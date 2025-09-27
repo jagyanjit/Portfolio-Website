@@ -147,6 +147,14 @@
             background: rgba(255, 255, 255, 0.5);
         }
         header h1 { font-size: 28px; }
+        header h1 a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s;
+        }
+        header h1 a:hover {
+            color: var(--accent);
+        }
         nav { display: flex; align-items: center; gap: 32px; }
         nav a {
             color: var(--muted);
@@ -308,12 +316,121 @@
         .timeline-item .period { font-size: 14px; color: var(--muted); font-weight: 500; margin-bottom: 10px; }
         
         /* --- 🛠️ SKILLS SECTION --- */
-        .skills-chart-container {
-            max-width: 450px;
-            margin: 60px auto 0;
-            position: relative;
+        #skills .container {
+            max-width: 1200px;
         }
-        #skillsChart { filter: drop-shadow(0 0 20px var(--accent-glow)); }
+
+        .skills-content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 5%;
+            margin-top: 60px;
+            min-height: 500px;
+        }
+
+        .skills-chart-container {
+            width: 100%;
+            max-width: 450px;
+            transform: translateX(50%);
+            transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        
+        .chart-wrapper {
+            width: 100%;
+            transform: rotate(0deg);
+            transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        
+        #custom-legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease-out 0.8s;
+        }
+        
+        .skill-details {
+            opacity: 0;
+            transform: translateX(30px);
+            transition: opacity 0.6s ease-out 0.8s, transform 0.6s ease-out 0.8s;
+        }
+
+        /* This class triggers the animation */
+        .skills-content-wrapper.show .skills-chart-container {
+            transform: translateX(0); /* Slide to its final grid position */
+        }
+        
+        .skills-content-wrapper.show .chart-wrapper {
+             transform: rotate(-220deg); /* Animate roll */
+        }
+
+        .skills-content-wrapper.show .skill-details {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .skills-content-wrapper.show #custom-legend {
+            opacity: 1;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        .legend-color-box {
+            width: 14px;
+            height: 14px;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+
+        .skill-category {
+            margin-bottom: 24px;
+        }
+
+        .skill-category h4 {
+            font-size: 20px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+            display: inline-block;
+        }
+        
+        .skill-category p {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-category p span {
+            background: var(--surface);
+            color: var(--muted);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s;
+        }
+
+        .skill-category p span:hover {
+            color: var(--text);
+            background-color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        #skillsChart { 
+            filter: drop-shadow(0 0 20px var(--accent-glow)); 
+        }
 
         /* --- 📄 FULL PAGE VIEWS --- */
         .full-page {
@@ -328,13 +445,36 @@
             justify-content: flex-start;
         }
         .back-button {
-            position: fixed; top: 24px; left: 4%;
+            position: fixed;
+            top: 24px;
+            right: 4%;
             z-index: 1200;
-            font-size: 36px;
-            color: var(--accent);
             transition: transform 0.3s;
+            cursor: pointer;
         }
-        .back-button:hover { transform: scale(1.2) rotate(-5deg); }
+        .back-button:hover { transform: scale(1.1); }
+        
+        .exit-icon {
+            width: 38px;
+            height: 38px;
+            stroke-width: 2;
+            stroke: var(--accent);
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .exit-icon .arrow, .exit-icon .arrow-line {
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .back-button:hover .exit-icon .arrow {
+            transform: translateX(4px);
+        }
+
+        .back-button:hover .exit-icon .arrow-line {
+            transform: translateX(2px);
+        }
         
         .grid {
             display: grid;
@@ -406,6 +546,34 @@
             }
             .hero-text { text-align: center; }
             .profile-pic { width: 220px; height: 220px; }
+            
+             .skills-content-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 60px;
+                min-height: 0;
+            }
+             .skills-chart-container {
+                transform: none;
+             }
+            .skills-content-wrapper.show .chart-wrapper {
+                transform: none; /* Disable rolling on mobile */
+            }
+            .skill-details {
+                width: 100%;
+                opacity: 0;
+                transform: translateY(30px);
+            }
+             .skills-content-wrapper.show .skill-details {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .skill-category h4 {
+                display: block;
+            }
+            .skill-category p {
+                justify-content: center;
+            }
         }
         @media(max-width: 768px){
             body { cursor: auto; } /* Disable custom cursor on mobile */
@@ -424,12 +592,12 @@
 <div class="cursor-outline"></div>
 
 <header id="header">
-    <h1>Jagyanjit Rout</h1>
+    <h1><a href="#" id="home-link">Jagyanjit Rout</a></h1>
     <nav>
+        <a href="#skills">Skills</a>
         <a id="nav-projects">Projects</a>
         <a id="nav-achievements">Achievements</a>
         <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
         <button class="theme-btn" id="themeToggle">☀️</button>
     </nav>
@@ -444,7 +612,35 @@
                     <p>Hands-on experience in cloud technologies, mobile app development, and machine learning. Eager to apply practical skills to real-world problems and contribute to meaningful projects.</p>
                 </div>
                 <div class="hero-image animated">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1374&auto=format&fit=crop&fp-x=0.5&fp-y=0.5" alt="Profile Picture" class="profile-pic">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0-a1dd7228f2d?q=80&w=1374&auto=format&fit=crop&fp-x=0.5&fp-y=0.5" alt="Profile Picture" class="profile-pic">
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="animated">
+            <div class="container">
+                <h2 class="section-title">My Toolbox & Skills</h2>
+                <div class="skills-content-wrapper">
+                    <div class="skills-chart-container">
+                        <div class="chart-wrapper">
+                            <canvas id="skillsChart"></canvas>
+                        </div>
+                        <div id="custom-legend"></div>
+                    </div>
+                    <div class="skill-details">
+                        <div class="skill-category">
+                            <h4>Programming</h4>
+                            <p><span>Python</span><span>C</span><span>C++</span><span>JavaScript</span><span>HTML</span><span>CSS</span><span>React Native</span></p>
+                        </div>
+                        <div class="skill-category">
+                            <h4>DevOps & Cloud</h4>
+                            <p><span>AWS</span><span>Docker</span><span>Kubernetes</span><span>Terraform</span><span>Git/GitHub</span><span>CI/CD</span><span>DevSecOps</span></p>
+                        </div>
+                         <div class="skill-category">
+                            <h4>Machine Learning & DL</h4>
+                            <p><span>Scikit-learn</span><span>Pandas</span><span>NumPy</span><span>TensorFlow</span><span>Keras</span></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -490,14 +686,6 @@
             </div>
         </section>
 
-        <section id="skills" class="animated">
-            <div class="container">
-                <h2 class="section-title">Skills</h2>
-                <div class="skills-chart-container">
-                    <canvas id="skillsChart"></canvas>
-                </div>
-            </div>
-        </section>
     </main>
 
     <footer id="contact">
@@ -515,7 +703,13 @@
 
 <!-- Full Page Views (Initially Hidden) -->
 <div id="projects-page" class="full-page">
-    <div class="back-button"><i class="fas fa-circle-arrow-left"></i></div>
+    <div class="back-button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="exit-icon" viewBox="0 0 24 24">
+            <path class="frame" d="M10 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path>
+            <path class="arrow" d="M17 16l4-4-4-4"></path>
+            <path class="arrow-line" d="M21 12H9"></path>
+        </svg>
+    </div>
     <div class="container">
         <h2 class="section-title">Projects</h2>
         <div class="grid">
@@ -548,7 +742,13 @@
 </div>
 
 <div id="achievements-page" class="full-page">
-    <div class="back-button"><i class="fas fa-circle-arrow-left"></i></div>
+    <div class="back-button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="exit-icon" viewBox="0 0 24 24">
+            <path class="frame" d="M10 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path>
+            <path class="arrow" d="M17 16l4-4-4-4"></path>
+            <path class="arrow-line" d="M21 12H9"></path>
+        </svg>
+    </div>
     <div class="container">
         <h2 class="section-title">Achievements & Certifications</h2>
         <div class="grid">
@@ -612,15 +812,30 @@
             themeBtn.textContent = theme === 'light' ? '🌙' : '☀️';
             localStorage.setItem('theme', theme);
         };
+        
+        const generateCustomLegend = (chart) => {
+            const legendContainer = document.getElementById('custom-legend');
+            if (!legendContainer) return;
+
+            const legendItems = chart.data.labels.map((label, index) => {
+                const backgroundColor = chart.data.datasets[0].backgroundColor[index];
+                return `
+                    <div class="legend-item">
+                        <span class="legend-color-box" style="background-color: ${backgroundColor}"></span>
+                        <span>${label}</span>
+                    </div>
+                `;
+            });
+
+            legendContainer.innerHTML = legendItems.join('');
+        }
 
         const createChart = () => {
             if (!skillsChartCanvas) return;
             const ctx = skillsChartCanvas.getContext('2d');
             
-            const lightText = '#111827';
-            const darkText = '#e6eef6';
-            const chartTextColor = body.classList.contains('light') ? lightText : darkText;
-            
+            const skillsWrapper = document.querySelector('.skills-content-wrapper');
+
             skillsChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
@@ -639,12 +854,24 @@
                     maintainAspectRatio: true,
                     cutout: '65%',
                     plugins: {
-                        legend: { position: 'bottom', labels: { color: chartTextColor, padding: 20, font: { family: "'Inter', sans-serif", size: 14 }}},
-                        tooltip: { enabled: true }
+                       legend: { display: false },
+                       tooltip: { enabled: true }
                     },
-                    animation: { animateRotate: true, animateScale: true, duration: 1500 }
+                    animation: { 
+                        animateRotate: true, 
+                        animateScale: true, 
+                        duration: 1500,
+                        onComplete: () => {
+                           if (skillsWrapper) {
+                               setTimeout(() => {
+                                   skillsWrapper.classList.add('show');
+                               }, 100);
+                           }
+                        }
+                    }
                 }
             });
+            generateCustomLegend(skillsChart);
         };
         
         const currentTheme = localStorage.getItem('theme') || 'dark';
@@ -656,6 +883,8 @@
 
             if (skillsChart) {
                 skillsChart.destroy();
+                const wrapper = document.querySelector('.skills-content-wrapper');
+                if (wrapper) wrapper.classList.remove('show');
                 createChart();
             }
         });
@@ -710,13 +939,18 @@
             projectsPage.style.display = 'none';
             achievementsPage.style.display = 'none';
             mainContent.style.display = 'block';
-            window.scrollTo(0, 0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         };
         
         document.getElementById('view-projects-btn').addEventListener('click', () => showPage(projectsPage));
         document.getElementById('nav-projects').addEventListener('click', () => showPage(projectsPage));
         document.getElementById('view-achievements-btn').addEventListener('click', () => showPage(achievementsPage));
         document.getElementById('nav-achievements').addEventListener('click', () => showPage(achievementsPage));
+        
+        document.getElementById('home-link').addEventListener('click', (e) => {
+            e.preventDefault();
+            showHome();
+        });
         
         document.querySelectorAll('.back-button').forEach(button => {
             button.addEventListener('click', showHome);
@@ -726,7 +960,7 @@
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.15
+            threshold: 0.25 // Trigger when 25% of the section is visible
         };
 
         const observerCallback = (entries, observer) => {
