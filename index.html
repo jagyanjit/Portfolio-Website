@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jagyanjit Rout | Developer Portfolio</title>
     
-    <!-- Google Fonts: Inter & Clash Display -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=clash-display@700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
     
-    <!-- Chart.js for Skills Chart -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
@@ -46,7 +43,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         html { 
-            scroll-behavior: smooth; 
+            scroll-behavior: smooth;
             --cursor-size: 8px;
             --cursor-outline-size: 30px;
         }
@@ -136,7 +133,7 @@
             transition: background 0.3s, padding 0.3s, box-shadow 0.3s;
         }
         header.scrolled {
-            background: rgba(24, 21, 33, 0.5); 
+            background: rgba(24, 21, 33, 0.5);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             padding: 16px 8%;
@@ -256,6 +253,14 @@
             position: relative;
             overflow: hidden;
             transition: transform var(--transition), box-shadow var(--transition);
+            background-size: cover;
+            background-position: center;
+        }
+        #view-projects-btn {
+             background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=500');
+        }
+        #view-achievements-btn {
+             background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1599508704512-2f19efd1e354?w=500');
         }
         .explore-card::before, .card::before {
             content: '';
@@ -276,11 +281,24 @@
         @keyframes rotate { to { --angle: 360deg; } }
 
         .explore-card:hover {
-            transform: translateY(-10px) scale(1.03);
+            transform: translateY(-10px) scale(1.03) rotate(1deg);
             box-shadow: 0 15px 50px var(--accent-glow);
         }
         .explore-card:hover::before, .card:hover::before { opacity: 1; }
-        .explore-card .icon { font-size: 48px; color: var(--accent); margin-bottom: 20px; }
+        .explore-card:hover .icon {
+            animation: bounce 0.8s;
+        }
+        .explore-card .icon { 
+            font-size: 48px; 
+            color: var(--accent); 
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
         .explore-card h3 { font-size: 24px; margin-bottom: 10px; }
         .explore-card p { color: var(--muted); }
         
@@ -323,7 +341,7 @@
         .skills-content-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            align-items: center;
+            align-items: start;
             gap: 5%;
             margin-top: 60px;
             min-height: 500px;
@@ -331,8 +349,8 @@
 
         .skills-chart-container {
             width: 100%;
-            max-width: 450px;
-            transform: translateX(50%);
+            max-width: 400px;
+            transform: translateX(94%);
             transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
         }
         
@@ -353,22 +371,22 @@
         
         .skill-details {
             opacity: 0;
-            transform: translateX(30px);
+            transform: translateX(30px) translateY(-14px);
             transition: opacity 0.6s ease-out 0.8s, transform 0.6s ease-out 0.8s;
         }
 
         /* This class triggers the animation */
         .skills-content-wrapper.show .skills-chart-container {
-            transform: translateX(0); /* Slide to its final grid position */
+            transform: translateX(0);
         }
         
         .skills-content-wrapper.show .chart-wrapper {
-             transform: rotate(-220deg); /* Animate roll */
+             transform: rotate(-220deg);
         }
 
         .skills-content-wrapper.show .skill-details {
             opacity: 1;
-            transform: translateX(0);
+            transform: translateX(0) translateY(-14px);
         }
 
         .skills-content-wrapper.show #custom-legend {
@@ -391,6 +409,9 @@
 
         .skill-category {
             margin-bottom: 24px;
+        }
+        .skill-category:last-child {
+            margin-bottom: 0;
         }
 
         .skill-category h4 {
@@ -429,12 +450,13 @@
         }
 
         #skillsChart { 
-            filter: drop-shadow(0 0 20px var(--accent-glow)); 
+            filter: drop-shadow(0 0 20px var(--accent-glow));
         }
 
         /* --- 📄 FULL PAGE VIEWS --- */
         .full-page {
-            position: fixed; top: 0; left: 0;
+            position: fixed;
+            top: 0; left: 0;
             width: 100%; height: 100%;
             background: var(--bg);
             overflow-y: auto;
@@ -555,7 +577,7 @@
             }
              .skills-chart-container {
                 transform: none;
-             }
+            }
             .skills-content-wrapper.show .chart-wrapper {
                 transform: none; /* Disable rolling on mobile */
             }
@@ -587,7 +609,6 @@
 </head>
 <body>
 
-<!-- Custom Cursor Elements -->
 <div class="cursor-dot"></div>
 <div class="cursor-outline"></div>
 
@@ -605,6 +626,7 @@
 
 <div id="main-content">
     <main>
+      
         <section class="hero">
             <div class="container">
                 <div class="hero-text animated">
@@ -701,7 +723,6 @@
     </footer>
 </div>
 
-<!-- Full Page Views (Initially Hidden) -->
 <div id="projects-page" class="full-page">
     <div class="back-button">
         <svg xmlns="http://www.w3.org/2000/svg" class="exit-icon" viewBox="0 0 24 24">
@@ -798,7 +819,6 @@
     </div>
 </div>
 
-
 <script>
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -807,12 +827,22 @@
         const skillsChartCanvas = document.getElementById('skillsChart');
         let skillsChart;
 
+        // --- THEME SWITCHER ---
         const applyTheme = (theme) => {
             body.classList.toggle('light', theme === 'light');
             themeBtn.textContent = theme === 'light' ? '🌙' : '☀️';
             localStorage.setItem('theme', theme);
         };
-        
+
+        // --- CHART.JS CUSTOM TOOLTIP POSITIONER ---
+        Chart.Tooltip.positioners.cursor = function(chartElements, eventPosition) {
+            return {
+                x: eventPosition.x,
+                y: eventPosition.y - 30 // Position 30px above the cursor
+            };
+        };
+
+        // --- CHART LEGEND ---
         const generateCustomLegend = (chart) => {
             const legendContainer = document.getElementById('custom-legend');
             if (!legendContainer) return;
@@ -822,14 +852,14 @@
                 return `
                     <div class="legend-item">
                         <span class="legend-color-box" style="background-color: ${backgroundColor}"></span>
-                        <span>${label}</span>
+                         <span>${label}</span>
                     </div>
                 `;
             });
-
             legendContainer.innerHTML = legendItems.join('');
         }
 
+        // --- CREATE THE SKILLS CHART ---
         const createChart = () => {
             if (!skillsChartCanvas) return;
             const ctx = skillsChartCanvas.getContext('2d');
@@ -841,7 +871,7 @@
                 data: {
                     labels: ['Programming', 'DevOps & Cloud', 'Machine Learning & DL'],
                     datasets: [{
-                        label: 'Skills Distribution',
+                        label: 'Skills',
                         data: [7, 7, 5],
                         backgroundColor: ['rgba(139, 92, 246, 0.7)', 'rgba(16, 185, 129, 0.7)', 'rgba(249, 115, 22, 0.7)'],
                         borderColor: [getComputedStyle(body).getPropertyValue('--surface')],
@@ -854,8 +884,18 @@
                     maintainAspectRatio: true,
                     cutout: '65%',
                     plugins: {
-                       legend: { display: false },
-                       tooltip: { enabled: true }
+                        legend: { display: false },
+                        tooltip: {
+                           enabled: true,
+                           position: 'cursor', 
+                           displayColors: false, 
+                           caretSize: 0, 
+                           callbacks: {
+                                label: function(context) {
+                                    return ` ${context.label}: ${context.raw} skills`;
+                                }
+                           }
+                        }
                     },
                     animation: { 
                         animateRotate: true, 
@@ -865,7 +905,7 @@
                            if (skillsWrapper) {
                                setTimeout(() => {
                                    skillsWrapper.classList.add('show');
-                               }, 100);
+                                }, 100);
                            }
                         }
                     }
@@ -874,9 +914,11 @@
             generateCustomLegend(skillsChart);
         };
         
+        // --- INITIALIZE THEME ---
         const currentTheme = localStorage.getItem('theme') || 'dark';
         applyTheme(currentTheme);
 
+        // --- EVENT LISTENERS ---
         themeBtn.addEventListener('click', () => {
             const newTheme = body.classList.contains('light') ? 'dark' : 'light';
             applyTheme(newTheme);
@@ -884,7 +926,7 @@
             if (skillsChart) {
                 skillsChart.destroy();
                 const wrapper = document.querySelector('.skills-content-wrapper');
-                if (wrapper) wrapper.classList.remove('show');
+                 if (wrapper) wrapper.classList.remove('show');
                 createChart();
             }
         });
@@ -935,7 +977,6 @@
             allCards.forEach(card => {
                 card.classList.remove('fade-in');
             });
-
             projectsPage.style.display = 'none';
             achievementsPage.style.display = 'none';
             mainContent.style.display = 'block';
@@ -946,12 +987,10 @@
         document.getElementById('nav-projects').addEventListener('click', () => showPage(projectsPage));
         document.getElementById('view-achievements-btn').addEventListener('click', () => showPage(achievementsPage));
         document.getElementById('nav-achievements').addEventListener('click', () => showPage(achievementsPage));
-        
         document.getElementById('home-link').addEventListener('click', (e) => {
             e.preventDefault();
             showHome();
         });
-        
         document.querySelectorAll('.back-button').forEach(button => {
             button.addEventListener('click', showHome);
         });
@@ -962,7 +1001,6 @@
             rootMargin: '0px',
             threshold: 0.25 // Trigger when 25% of the section is visible
         };
-
         const observerCallback = (entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -983,4 +1021,3 @@
 
 </body>
 </html>
-
