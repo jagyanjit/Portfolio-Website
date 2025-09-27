@@ -31,12 +31,12 @@
         }
 
         body.light {
-            --bg: #f4f7fa;
+            --bg: #e5e7eb; /* Changed to a light grey */
             --surface: #ffffff;
             --text: #111827;
             --muted: #6b7280;
             --accent: #7c3aed;
-            --accent-glow: rgba(124, 58, 237, 0.1);
+            --accent-glow: rgba(0, 0, 0, 0.05);
             --border-color: rgba(0, 0, 0, 0.08);
         }
 
@@ -69,7 +69,7 @@
             background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), var(--accent-glow) 0%, transparent 40%);
             pointer-events: none;
             z-index: -1;
-            opacity: 0.6;
+            opacity: 1; 
             transition: background 0.1s linear;
         }
 
@@ -253,14 +253,6 @@
             position: relative;
             overflow: hidden;
             transition: transform var(--transition), box-shadow var(--transition);
-            background-size: cover;
-            background-position: center;
-        }
-        #view-projects-btn {
-             background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=500');
-        }
-        #view-achievements-btn {
-             background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1599508704512-2f19efd1e354?w=500');
         }
         .explore-card::before, .card::before {
             content: '';
@@ -281,7 +273,7 @@
         @keyframes rotate { to { --angle: 360deg; } }
 
         .explore-card:hover {
-            transform: translateY(-10px) scale(1.03) rotate(1deg);
+            transform: translateY(-10px) scale(1.03);
             box-shadow: 0 15px 50px var(--accent-glow);
         }
         .explore-card:hover::before, .card:hover::before { opacity: 1; }
@@ -299,8 +291,14 @@
             40% {transform: translateY(-20px);}
             60% {transform: translateY(-10px);}
         }
-        .explore-card h3 { font-size: 24px; margin-bottom: 10px; }
+        .explore-card h3 { font-size: 24px; margin-bottom: 10px; color: var(--text); }
         .explore-card p { color: var(--muted); }
+        body.light .explore-card h3 {
+             color: var(--text);
+        }
+        body.light .explore-card p {
+            color: var(--muted);
+        }
         
         /* --- 🎓 EDUCATION SECTION --- */
         .timeline { max-width: 800px; margin: 0 auto; position: relative; }
@@ -313,7 +311,9 @@
             border-radius: 0 var(--radius) var(--radius) 0;
             transition: box-shadow var(--transition);
         }
-        .timeline-item:hover { box-shadow: 0 8px 30px var(--accent-glow); }
+        .timeline-item:hover {
+            box-shadow: 0 8px 30px var(--accent-glow);
+        }
         .timeline-item::before {
             content: '';
             position: absolute;
@@ -584,11 +584,11 @@
             .skill-details {
                 width: 100%;
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(30px) translateY(0);
             }
              .skills-content-wrapper.show .skill-details {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) translateY(0);
             }
             .skill-category h4 {
                 display: block;
@@ -616,8 +616,7 @@
     <h1><a href="#" id="home-link">Jagyanjit Rout</a></h1>
     <nav>
         <a href="#skills">Skills</a>
-        <a id="nav-projects">Projects</a>
-        <a id="nav-achievements">Achievements</a>
+        <a href="#explore">My Works</a>
         <a href="#education">Education</a>
         <a href="#contact">Contact</a>
         <button class="theme-btn" id="themeToggle">☀️</button>
@@ -634,7 +633,7 @@
                     <p>Hands-on experience in cloud technologies, mobile app development, and machine learning. Eager to apply practical skills to real-world problems and contribute to meaningful projects.</p>
                 </div>
                 <div class="hero-image animated">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0-a1dd7228f2d?q=80&w=1374&auto=format&fit=crop&fp-x=0.5&fp-y=0.5" alt="Profile Picture" class="profile-pic">
+                    <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Profile Picture" class="profile-pic">
                 </div>
             </div>
         </section>
@@ -832,13 +831,17 @@
             body.classList.toggle('light', theme === 'light');
             themeBtn.textContent = theme === 'light' ? '🌙' : '☀️';
             localStorage.setItem('theme', theme);
+            if (skillsChart) {
+                skillsChart.destroy();
+                createChart();
+            }
         };
 
         // --- CHART.JS CUSTOM TOOLTIP POSITIONER ---
         Chart.Tooltip.positioners.cursor = function(chartElements, eventPosition) {
             return {
                 x: eventPosition.x,
-                y: eventPosition.y - 30 // Position 30px above the cursor
+                y: eventPosition.y - 30 
             };
         };
 
@@ -922,13 +925,6 @@
         themeBtn.addEventListener('click', () => {
             const newTheme = body.classList.contains('light') ? 'dark' : 'light';
             applyTheme(newTheme);
-
-            if (skillsChart) {
-                skillsChart.destroy();
-                const wrapper = document.querySelector('.skills-content-wrapper');
-                 if (wrapper) wrapper.classList.remove('show');
-                createChart();
-            }
         });
 
         const header = document.getElementById('header');
@@ -984,9 +980,7 @@
         };
         
         document.getElementById('view-projects-btn').addEventListener('click', () => showPage(projectsPage));
-        document.getElementById('nav-projects').addEventListener('click', () => showPage(projectsPage));
         document.getElementById('view-achievements-btn').addEventListener('click', () => showPage(achievementsPage));
-        document.getElementById('nav-achievements').addEventListener('click', () => showPage(achievementsPage));
         document.getElementById('home-link').addEventListener('click', (e) => {
             e.preventDefault();
             showHome();
@@ -1021,4 +1015,3 @@
 
 </body>
 </html>
-
