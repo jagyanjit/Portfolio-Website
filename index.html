@@ -98,7 +98,7 @@
             transition: width 0.3s, height 0.3s, background-color 0.3s;
         }
 
-        body:has(a:hover, button:hover, .explore-card:hover) .cursor-outline {
+        body:has(a:hover, button:hover, .explore-card:hover, .cert-card:hover, .carousel-item:hover) .cursor-outline {
             width: calc(var(--cursor-outline-size) * 1.5);
             height: calc(var(--cursor-outline-size) * 1.5);
             background-color: rgba(139, 92, 246, 0.2);
@@ -174,13 +174,41 @@
         nav a:hover:after { width: 100%; left: 0; }
         
         .theme-btn {
-            background: transparent;
+            background: none;
             border: none;
-            font-size: 24px;
-            color: var(--accent);
-            transition: transform 0.3s, color 0.3s;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .theme-btn:hover { transform: rotate(20deg) scale(1.1); }
+        .theme-btn svg {
+            position: absolute;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+            width: 24px;
+            height: 24px;
+            stroke-width: 2;
+        }
+        .theme-btn .sun {
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+            stroke: #facc15; /* Yellow */
+        }
+        .theme-btn .moon {
+            transform: scale(0);
+            opacity: 0;
+            stroke: var(--accent);
+        }
+        body.light .theme-btn .sun {
+            transform: scale(0);
+            opacity: 0;
+        }
+        body.light .theme-btn .moon {
+            transform: scale(1) rotate(0deg);
+            opacity: 1;
+        }
 
         /* --- 🚀 HERO SECTION --- */
         .hero .container {
@@ -309,10 +337,11 @@
             border-left: 3px solid var(--accent);
             margin-bottom: 30px;
             border-radius: 0 var(--radius) var(--radius) 0;
-            transition: box-shadow var(--transition);
+            transition: box-shadow var(--transition), transform var(--transition);
         }
         .timeline-item:hover {
             box-shadow: 0 8px 30px var(--accent-glow);
+            transform: scale(1.03) translateX(15px);
         }
         .timeline-item::before {
             content: '';
@@ -448,6 +477,10 @@
             border-color: var(--accent);
             transform: translateY(-2px);
         }
+        
+        body.light .skill-category p span:hover {
+            color: #ffffff;
+        }
 
         #skillsChart { 
             filter: drop-shadow(0 0 20px var(--accent-glow));
@@ -458,13 +491,25 @@
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: var(--bg);
+            background-color: var(--bg);
             overflow-y: auto;
             z-index: 1100;
             padding: 140px 0;
             display: none;
             flex-direction: column;
             justify-content: flex-start;
+            align-items: center;
+        }
+        .full-page::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), var(--accent-glow) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
         }
         .back-button {
             position: fixed;
@@ -517,6 +562,9 @@
             transform: translateY(-10px) scale(1.03);
             box-shadow: 0 15px 50px var(--accent-glow);
         }
+        .card.clickable-card {
+            cursor: pointer;
+        }
         .card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; }
         .card-content { padding: 24px; flex-grow: 1; }
         .card-content h3 { margin-bottom: 12px; font-size: 22px; }
@@ -560,6 +608,194 @@
             transform: translateY(0);
         }
         
+        /* --- PROJECT DETAIL PAGE --- */
+        .project-detail-layout {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            width: 100%;
+            max-width: 1200px;
+            align-items: start;
+        }
+        #mobile-app-page .project-detail-layout {
+            grid-template-columns: 1.2fr 1fr; /* Reverted to 2 columns */
+        }
+
+        .project-carousel {
+            position: relative;
+            overflow: visible;
+            border-radius: var(--radius);
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+        .carousel-item {
+            min-width: 100%;
+            background-color: var(--surface);
+            overflow: hidden;
+            border-radius: var(--radius);
+        }
+        .carousel-item .media-container {
+            cursor: pointer;
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            width: 100%;
+        }
+        .carousel-item .media-container.aspect-16-9 {
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+        .carousel-item .media-container.aspect-9-16 {
+            padding-bottom: 177.77%;
+            height: 0;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+        .carousel-item .media-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .carousel-item img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        .repo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--muted);
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        .full-page .container .repo-link {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 4rem;
+        }
+        .repo-link:hover {
+            color: var(--accent);
+        }
+        .repo-link i {
+            font-size: 1.5rem;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.3);
+            border: none;
+            color: white;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+        .project-carousel .carousel-track:hover ~ .carousel-btn,
+        .project-carousel .media-container:hover ~ .carousel-btn {
+            opacity: 1;
+        }
+        .carousel-btn.left { left: 10px; }
+        .carousel-btn.right { right: 10px; }
+
+        .project-description h4 {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .project-description h4 .fa-cogs {
+            color: var(--muted);
+        }
+        .project-description h4 .fa-lightbulb {
+            color: #facc15; /* yellow */
+        }
+        .project-description p {
+            color: var(--muted);
+            margin-bottom: 2rem;
+            white-space: pre-line;
+            font-size: 1.05rem;
+            padding-left: 36px;
+            text-align: justify;
+        }
+        .project-description p b {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* --- LIGHTBOX --- */
+        .lightbox-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        .lightbox-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .lightbox-content {
+            position: relative;
+            transform: scale(0.7);
+            transition: transform 0.3s;
+        }
+        .lightbox-overlay.show .lightbox-content {
+            transform: scale(1);
+        }
+        .lightbox-content .lightbox-media-container {
+            max-width: 85vw;
+            max-height: 85vh;
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        .lightbox-content .lightbox-media-container.aspect-16-9 {
+            width: 85vw;
+            height: calc(85vw * 9 / 16);
+        }
+        .lightbox-content .lightbox-media-container.aspect-9-16 {
+            height: 85vh;
+            width: calc(85vh * 9 / 16);
+        }
+        .lightbox-content .lightbox-media-container iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0;
+        }
+        .lightbox-content img {
+            max-width: 85vw;
+            max-height: 85vh;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        
         /* --- 📱 RESPONSIVE DESIGN --- */
         @media(max-width: 992px) {
             .hero .container {
@@ -596,6 +832,12 @@
             .skill-category p {
                 justify-content: center;
             }
+            .project-detail-layout, #mobile-app-page .project-detail-layout {
+                grid-template-columns: 1fr;
+            }
+            .carousel-item .media-container.aspect-9-16 {
+                max-width: 250px;
+            }
         }
         @media(max-width: 768px){
             body { cursor: auto; } /* Disable custom cursor on mobile */
@@ -619,13 +861,27 @@
         <a href="#explore">My Works</a>
         <a href="#education">Education</a>
         <a href="#contact">Contact</a>
-        <button class="theme-btn" id="themeToggle">☀️</button>
+        <button class="theme-btn" id="themeToggle">
+            <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+            <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+        </button>
     </nav>
 </header>
 
 <div id="main-content">
     <main>
-      
         <section class="hero">
             <div class="container">
                 <div class="hero-text animated">
@@ -633,7 +889,7 @@
                     <p>Hands-on experience in cloud technologies, mobile app development, and machine learning. Eager to apply practical skills to real-world problems and contribute to meaningful projects.</p>
                 </div>
                 <div class="hero-image animated">
-                    <img src="https://i.ibb.co/prwhWb7M/Picsart-25-08-25-11-28-06-390.jpg" alt="Profile Picture" class="profile-pic">
+                    <img src="https://i.ibb.co/prwhWb7M/Picsart-25-08-25-11-28-06-390.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Profile Picture" class="profile-pic">
                 </div>
             </div>
         </section>
@@ -706,7 +962,6 @@
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer id="contact">
@@ -715,7 +970,8 @@
                 <a href="mailto:jagyanjit@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
                 <a href="https://www.linkedin.com/in/jagyanjit/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/jagyanjit" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://t.me/Jagyanjit" target="_blank" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+                <a href="https://www.behance.net/jagyanjitrout" target="_blank" aria-label="Behance"><i class="fab fa-behance"></i></a>
+                <a href="https://leetcode.com/u/jjB9vY4cFR/" target="_blank" aria-label="LeetCode"><i class="fas fa-code"></i></a>
             </div>
             <p>© 2025 Jagyanjit Rout. All rights reserved.</p>
         </div>
@@ -733,6 +989,18 @@
     <div class="container">
         <h2 class="section-title">Projects</h2>
         <div class="grid">
+            <div id="morse-code-card" class="card clickable-card">
+                <div class="card-content">
+                    <h3>Morse Code Converter (Morse-Talk)</h3>
+                    <p>Morse-Talk assists non-verbal paralyzed individuals. It converts Morse code to text and then text-to-speech and GSM emergency calls.</p>
+                </div>
+            </div>
+            <div id="mobile-app-card" class="card clickable-card">
+                <div class="card-content">
+                    <h3>Mobile App Development</h3>
+                    <p>Built a responsive mobile app using React Native, featuring a product catalog UI and basic cart functionality.</p>
+                </div>
+            </div>
             <div class="card">
                 <div class="card-content">
                     <h3>End-to-End CI/CD Pipeline</h3>
@@ -743,12 +1011,6 @@
                 <div class="card-content">
                     <h3>DevSecOps Implementation</h3>
                     <p>Enhanced deployment security by integrating security scans with tfsec and Trivy, and managed Kubernetes secrets using Sealed Secrets.</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-content">
-                    <h3>Mobile App Development</h3>
-                    <p>Built a responsive mobile app using React Native, featuring a product catalog UI and basic cart functionality, tested on Snack Expo Dev.</p>
                 </div>
             </div>
             <div class="card">
@@ -772,43 +1034,43 @@
     <div class="container">
         <h2 class="section-title">Achievements & Certifications</h2>
         <div class="grid">
-            <div class="card">
+             <div class="card cert-card" data-gdrive-id="1yZNuGUxZWCTaIdsq-VN1gvnuXua4u6Wy">
                 <div class="card-content">
                     <h3>DevOps Masters</h3>
                     <span class="issuer">by ingenious-TechWorld</span>
                 </div>
             </div>
-            <div class="card">
+            <div class="card cert-card" data-gdrive-id="1UV-_6vpEvbUU4J8A79SvRuV_tZfHqlt9">
                 <div class="card-content">
                     <h3>Machine Learning & Deep Learning</h3>
                     <span class="issuer">by Silicon University</span>
                 </div>
             </div>
-             <div class="card">
+             <div class="card cert-card" data-gdrive-id="1TA61paVcOIXJetUtBnxGLoO0bskiJWc-">
                 <div class="card-content">
                     <h3>Mobile App Development using React Native</h3>
                     <span class="issuer">by Syllogistek Systems Pvt Ltd</span>
                 </div>
             </div>
-            <div class="card">
+            <div class="card cert-card" data-gdrive-id="1chAsZX0bDYtVJ0-cDoFU3lfKmICD583w">
                 <div class="card-content">
                     <h3>Introduction To Industry 4.0 And Industrial Internet Of Things</h3>
                     <span class="issuer">by NPTEL</span>
                 </div>
             </div>
-            <div class="card">
+            <div class="card cert-card" data-gdrive-id="1JWuZFYQ3Q5K9Zfthv3HRFf3Bh6jKHYjp">
                 <div class="card-content">
                     <h3>Understanding Incubation and Entrepreneurship</h3>
                     <span class="issuer">by NPTEL</span>
                 </div>
             </div>
-            <div class="card">
+            <div class="card cert-card" data-gdrive-id="15X11yhWmE8EgqR--vySYoA5ANsjRiElr">
                 <div class="card-content">
                     <h3>MATLAB Onramp</h3>
                     <span class="issuer">by MathWorks</span>
                 </div>
             </div>
-            <div class="card">
+            <div class="card cert-card" data-gdrive-id="1pnxbSrGRZa3lcGwH9fWi6tKLB13BtQ8x">
                 <div class="card-content">
                     <h3>MATLAB Fundamentals</h3>
                     <span class="issuer">by MathWorks</span>
@@ -818,6 +1080,107 @@
     </div>
 </div>
 
+<div id="morse-project-page" class="full-page">
+     <div class="back-button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="exit-icon" viewBox="0 0 24 24">
+            <path class="frame" d="M10 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path>
+            <path class="arrow" d="M17 16l4-4-4-4"></path>
+            <path class="arrow-line" d="M21 12H9"></path>
+        </svg>
+    </div>
+     <div class="container">
+        <h2 class="section-title">Morse-Talk (voice for the voiceless)</h2>
+        <div class="project-detail-layout">
+            <div class="project-carousel">
+                <div class="carousel-track">
+                    <div class="carousel-item" data-type="video">
+                        <div class="media-container aspect-16-9">
+                            <iframe src="https://player.vimeo.com/video/1122621998?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Morse-Talk (Voice For The Voiceless)"></iframe>
+                        </div>
+                    </div>
+                    <div class="carousel-item" data-type="image">
+                         <img src="https://drive.google.com/thumbnail?id=1jc3pWvsP37lvBmomXCSTRd9DstCiwSdL&sz=w1000" alt="Project Abstract">
+                    </div>
+                </div>
+                <button class="carousel-btn left"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn right"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="project-description">
+                <h4><i class="fas fa-cogs"></i> Construction</h4>
+                <p>
+                    <b>Input:</b> IR sensor detects Morse signals (short = dot, long = dash).
+                    <b>Processing:</b> ESP32 firmware (morse_to_text.ino) times signals, converts them into Morse strings, and maps them to characters.
+                    <b>Display:</b> Characters appear on an LCD screen for immediate feedback.
+                    <b>Communication:</b> Text is sent via Bluetooth to a Python program.
+                    <b>Output:</b> Python converts text to speech; GSM module can place emergency calls.
+                </p>
+                <h4><i class="fas fa-lightbulb"></i> Working Principle</h4>
+                <p>
+                    User taps signals → IR sensor captures ON/OFF durations.
+                    Firmware distinguishes dots, dashes, and gaps.
+                    Morse sequence is matched to a letter using a lookup table.
+                    Letter is shown on the LCD and transmitted to Python.
+                    Python speaks the message; GSM module dials if emergency code is triggered.
+                </p>
+            </div>
+        </div>
+        <a href="https://github.com/jagyanjit/Morse-Code-Converter" target="_blank" class="repo-link">
+            <i class="fab fa-github"></i>
+            <span>Explore the codes</span>
+        </a>
+    </div>
+</div>
+
+<div id="mobile-app-page" class="full-page">
+     <div class="back-button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="exit-icon" viewBox="0 0 24 24">
+            <path class="frame" d="M10 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path>
+            <path class="arrow" d="M17 16l4-4-4-4"></path>
+            <path class="arrow-line" d="M21 12H9"></path>
+        </svg>
+    </div>
+     <div class="container">
+        <h2 class="section-title">Dummy Mobile Application</h2>
+        <div class="project-detail-layout">
+            <div class="project-carousel">
+                <div class="carousel-track">
+                     <div class="carousel-item" data-type="video">
+                        <div class="media-container aspect-16-9">
+                            <iframe src="https://player.vimeo.com/video/1122725179?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Dummy Mobile Application"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="project-description">
+                <h4><i class="fas fa-cogs"></i> What it uses</h4>
+                <p>
+                    <b>JavaScript + React Native:</b> A cross-platform mobile framework.
+                    <b>React components & JSX:</b> Used for building the user interface.
+                    <b>Babel + Node/npm:</b> For transpiling and dependency management.
+                    <b>React Context API:</b> Manages and shares state across the app.
+                </p>
+                <h4><i class="fas fa-lightbulb"></i> How it works</h4>
+                <p>
+                    <b>App.js:</b> The main entry point that loads the application.
+                    <b>AppNavigator.js:</b> Handles all navigation between different screens.
+                    <b>Screens + Components:</b> Render the UI elements and contain the logic.
+                    <b>Context:</b> Provides a global state for data accessible across all screens.
+                </p>
+            </div>
+        </div>
+        <a href="https://github.com/jagyanjit/Dummy-Mobile-App" target="_blank" class="repo-link">
+            <i class="fab fa-github"></i>
+            <span>Explore the codes</span>
+        </a>
+    </div>
+</div>
+
+<div id="lightbox" class="lightbox-overlay">
+    <div class="lightbox-content">
+    </div>
+</div>
+
+<script src="https://player.vimeo.com/api/player.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
 
@@ -825,19 +1188,12 @@
         const body = document.body;
         const skillsChartCanvas = document.getElementById('skillsChart');
         let skillsChart;
+        let vimeoPlayer = null;
 
-        // --- THEME SWITCHER ---
         const applyTheme = (theme) => {
             body.classList.toggle('light', theme === 'light');
-            themeBtn.textContent = theme === 'light' ? '🌙' : '☀️';
-            localStorage.setItem('theme', theme);
-            if (skillsChart) {
-                skillsChart.destroy();
-                createChart();
-            }
         };
 
-        // --- CHART.JS CUSTOM TOOLTIP POSITIONER ---
         Chart.Tooltip.positioners.cursor = function(chartElements, eventPosition) {
             return {
                 x: eventPosition.x,
@@ -845,7 +1201,6 @@
             };
         };
 
-        // --- CHART LEGEND ---
         const generateCustomLegend = (chart) => {
             const legendContainer = document.getElementById('custom-legend');
             if (!legendContainer) return;
@@ -862,7 +1217,6 @@
             legendContainer.innerHTML = legendItems.join('');
         }
 
-        // --- CREATE THE SKILLS CHART ---
         const createChart = () => {
             if (!skillsChartCanvas) return;
             const ctx = skillsChartCanvas.getContext('2d');
@@ -876,7 +1230,7 @@
                     datasets: [{
                         label: 'Skills',
                         data: [7, 7, 5],
-                        backgroundColor: ['rgba(139, 92, 246, 0.7)', 'rgba(16, 185, 129, 0.7)', 'rgba(249, 115, 22, 0.7)'],
+                        backgroundColor: ['#a78bfa', '#f472b6', '#f5f5f5'],
                         borderColor: [getComputedStyle(body).getPropertyValue('--surface')],
                         borderWidth: 4,
                         hoverOffset: 20
@@ -917,13 +1271,12 @@
             generateCustomLegend(skillsChart);
         };
         
-        // --- INITIALIZE THEME ---
         const currentTheme = localStorage.getItem('theme') || 'dark';
         applyTheme(currentTheme);
 
-        // --- EVENT LISTENERS ---
         themeBtn.addEventListener('click', () => {
             const newTheme = body.classList.contains('light') ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme);
             applyTheme(newTheme);
         });
 
@@ -932,7 +1285,6 @@
             header.classList.toggle('scrolled', window.scrollY > 50 && !document.querySelector('.full-page[style*="display: flex"]'));
         });
 
-        // --- 🖱️ CURSOR & SPOTLIGHT EFFECT ---
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
         window.addEventListener('mousemove', (e) => {
@@ -949,13 +1301,13 @@
             }, { duration: 500, fill: "forwards"});
         });
 
-        // --- PAGE NAVIGATION ---
         const mainContent = document.getElementById('main-content');
-        const projectsPage = document.getElementById('projects-page');
-        const achievementsPage = document.getElementById('achievements-page');
-        
+        const allPages = document.querySelectorAll('.full-page');
+        const backButtons = document.querySelectorAll('.back-button');
+
         const showPage = (pageToShow) => {
             mainContent.style.display = 'none';
+            allPages.forEach(p => p.style.display = 'none');
             pageToShow.style.display = 'flex';
             window.scrollTo(0, 0);
             header.classList.remove('scrolled');
@@ -969,31 +1321,115 @@
         };
 
         const showHome = () => {
-            const allCards = document.querySelectorAll('.full-page .card');
-            allCards.forEach(card => {
-                card.classList.remove('fade-in');
-            });
-            projectsPage.style.display = 'none';
-            achievementsPage.style.display = 'none';
+            allPages.forEach(page => page.style.display = 'none');
             mainContent.style.display = 'block';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         };
         
-        document.getElementById('view-projects-btn').addEventListener('click', () => showPage(projectsPage));
-        document.getElementById('view-achievements-btn').addEventListener('click', () => showPage(achievementsPage));
+        const closeAndResetMedia = () => {
+            const lightbox = document.getElementById('lightbox');
+            if (vimeoPlayer) {
+                vimeoPlayer.unload();
+                vimeoPlayer = null;
+            }
+            lightbox.classList.remove('show');
+            lightbox.querySelector('.lightbox-content').innerHTML = '';
+        };
+
+        document.getElementById('view-projects-btn').addEventListener('click', () => showPage(document.getElementById('projects-page')));
+        document.getElementById('view-achievements-btn').addEventListener('click', () => showPage(document.getElementById('achievements-page')));
+        document.getElementById('morse-code-card').addEventListener('click', () => showPage(document.getElementById('morse-project-page')));
+        document.getElementById('mobile-app-card').addEventListener('click', () => showPage(document.getElementById('mobile-app-page')));
         document.getElementById('home-link').addEventListener('click', (e) => {
             e.preventDefault();
             showHome();
         });
-        document.querySelectorAll('.back-button').forEach(button => {
-            button.addEventListener('click', showHome);
+        
+        backButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                closeAndResetMedia();
+                const currentPage = button.closest('.full-page');
+                if (currentPage.id === 'morse-project-page' || currentPage.id === 'mobile-app-page') {
+                    showPage(document.getElementById('projects-page'));
+                } else {
+                    showHome();
+                }
+            });
+        });
+        
+        // --- LIGHTBOX LOGIC ---
+        const lightbox = document.getElementById('lightbox');
+        const lightboxContent = lightbox.querySelector('.lightbox-content');
+        document.querySelectorAll('.cert-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const gdriveId = card.getAttribute('data-gdrive-id');
+                const imageUrl = `https://drive.google.com/thumbnail?id=${gdriveId}&sz=w1000`;
+                lightboxContent.innerHTML = `<img src="${imageUrl}" alt="Certificate">`;
+                lightbox.classList.add('show');
+            });
+        });
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeAndResetMedia();
+            }
+        });
+        
+        // --- CAROUSEL LOGIC ---
+        document.querySelectorAll('.project-carousel').forEach(carousel => {
+            const carouselTrack = carousel.querySelector('.carousel-track');
+            if (!carouselTrack) return;
+            const carouselItems = carousel.querySelectorAll('.carousel-item');
+            const prevBtn = carousel.querySelector('.carousel-btn.left');
+            const nextBtn = carousel.querySelector('.carousel-btn.right');
+            let currentIndex = 0;
+
+            const updateCarousel = () => {
+                carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+            };
+            
+            if(nextBtn && prevBtn){
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % carouselItems.length;
+                    updateCarousel();
+                });
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
+                    updateCarousel();
+                });
+            }
+
+            carouselItems.forEach(item => {
+                const mediaContainer = item.querySelector('.media-container, img');
+                if (mediaContainer) {
+                    mediaContainer.addEventListener('click', () => {
+                        const type = item.getAttribute('data-type');
+                        const mediaElement = item.querySelector('iframe, img');
+                        const src = mediaElement.getAttribute('src');
+
+                        if (type === 'video') {
+                            const autoplaySrc = src.includes('?') ? `${src}&autoplay=1` : `${src}?autoplay=1`;
+                            let lightboxVideoHtml;
+                            const aspectRatioClass = mediaContainer.classList.contains('aspect-9-16') ? 'aspect-9-16' : 'aspect-16-9';
+                            
+                            lightboxVideoHtml = `<div class="lightbox-media-container ${aspectRatioClass}"><iframe src="${autoplaySrc}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
+                            
+                            lightboxContent.innerHTML = lightboxVideoHtml;
+                            const iframe = lightboxContent.querySelector('iframe');
+                            vimeoPlayer = new Vimeo.Player(iframe);
+                        } else {
+                            lightboxContent.innerHTML = `<img src="${src}" alt="Project Media">`;
+                        }
+                        lightbox.classList.add('show');
+                    });
+                }
+            });
         });
 
-        // --- INTERSECTION OBSERVER FOR ANIMATIONS ---
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.25 // Trigger when 25% of the section is visible
+            threshold: 0.25 
         };
         const observerCallback = (entries, observer) => {
             entries.forEach(entry => {
@@ -1015,4 +1451,3 @@
 
 </body>
 </html>
-
