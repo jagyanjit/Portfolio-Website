@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,7 +98,7 @@
             transition: width 0.3s, height 0.3s, background-color 0.3s;
         }
 
-        body:has(a:hover, button:hover, .explore-card:hover, .cert-card:hover, .carousel-item:hover) .cursor-outline {
+        body:has(a:hover, button:hover, .explore-card:hover, .cert-card:hover, .carousel-item:hover, .ml-card-link:hover) .cursor-outline {
             width: calc(var(--cursor-outline-size) * 1.5);
             height: calc(var(--cursor-outline-size) * 1.5);
             background-color: rgba(139, 92, 246, 0.2);
@@ -618,10 +617,6 @@
             max-width: 1200px;
             align-items: start;
         }
-        #mobile-app-page .project-detail-layout {
-            grid-template-columns: 1.2fr 1fr; /* Reverted to 2 columns */
-        }
-
         .project-carousel {
             position: relative;
             overflow: visible;
@@ -678,11 +673,18 @@
             transition: color 0.3s;
             font-weight: 500;
         }
-        .full-page .container .repo-link {
+        .repo-links-container {
             display: flex;
-            justify-content: center;
             width: 100%;
             margin-top: 4rem;
+            max-width: 1200px;
+        }
+        .repo-links-container .repo-link-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
         }
         .repo-link:hover {
             color: var(--accent);
@@ -726,17 +728,65 @@
         .project-description h4 .fa-lightbulb {
             color: #facc15; /* yellow */
         }
-        .project-description p {
+        .project-description p, .project-description ol {
             color: var(--muted);
-            margin-bottom: 2rem;
-            white-space: pre-line;
+            margin-bottom: 1rem;
             font-size: 1.05rem;
-            padding-left: 36px;
-            text-align: justify;
+        }
+        .project-description ol {
+            padding-left: 56px;
+            color: var(--text);
+        }
+        .project-description ol ul {
+            padding-left: 20px;
+            margin-top: 0.5rem;
+            color: var(--muted);
+        }
+        .project-description p {
+             padding-left: 36px;
+        }
+        .project-description li {
+            margin-bottom: 0.5rem;
         }
         .project-description p b {
             color: var(--text);
             font-weight: 600;
+        }
+        
+        #ml-predictions-page .project-detail-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        .ml-card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            height: 100%;
+        }
+        .ml-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            transition: all var(--transition);
+        }
+        .ml-card-link:hover .ml-card {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 50px var(--accent-glow);
+        }
+        .ml-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .ml-card ol {
+            padding-left: 20px;
+            color: var(--muted);
+            flex-grow: 1;
         }
 
         /* --- LIGHTBOX --- */
@@ -833,8 +883,13 @@
             .skill-category p {
                 justify-content: center;
             }
-            .project-detail-layout, #mobile-app-page .project-detail-layout {
+            .project-detail-layout, #ml-predictions-page .project-detail-layout {
                 grid-template-columns: 1fr;
+            }
+            .repo-links-container {
+                flex-direction: column;
+                gap: 2rem;
+                align-items: center;
             }
             .carousel-item .media-container.aspect-9-16 {
                 max-width: 250px;
@@ -1002,22 +1057,22 @@
                     <p>Built a responsive mobile app using React Native, featuring a product catalog UI and basic cart functionality.</p>
                 </div>
             </div>
-            <div class="card">
+            <div id="cicd-pipeline-card" class="card clickable-card">
                 <div class="card-content">
                     <h3>End-to-End CI/CD Pipeline</h3>
                     <p>Implemented an automated CI/CD pipeline for cloud deployments using AWS CodePipeline and managed scalable infrastructure with Terraform.</p>
                 </div>
             </div>
-            <div class="card">
+            <div id="devsecops-card" class="card clickable-card">
                 <div class="card-content">
                     <h3>DevSecOps Implementation</h3>
                     <p>Enhanced deployment security by integrating security scans with tfsec and Trivy, and managed Kubernetes secrets using Sealed Secrets.</p>
                 </div>
             </div>
-            <div class="card">
+            <div id="ml-predictions-card" class="card clickable-card">
                 <div class="card-content">
                     <h3>ML-Powered Predictions</h3>
-                    <p>Developed a crop recommendation system with 99.5% accuracy using Naive Bayes and a COVID-19 outcome predictor with Logistic Regression.</p>
+                    <p>Developed crop recommendation and COVID-19 prediction models using Random Forest and Logistic Regression.</p>
                 </div>
             </div>
         </div>
@@ -1099,13 +1154,8 @@
                             <iframe src="https://player.vimeo.com/video/1122621998?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Morse-Talk (Voice For The Voiceless)"></iframe>
                         </div>
                     </div>
-                    <div class="carousel-item" data-type="image">
-                         <img src="https://drive.google.com/thumbnail?id=1jc3pWvsP37lvBmomXCSTRd9DstCiwSdL&sz=w1000" alt="Project Abstract">
-                    </div>
                 </div>
-                <button class="carousel-btn left"><i class="fas fa-chevron-left"></i></button>
-                <button class="carousel-btn right"><i class="fas fa-chevron-right"></i></button>
-            </div>
+                </div>
             <div class="project-description">
                 <h4><i class="fas fa-cogs"></i> Construction</h4>
                 <p>
@@ -1129,7 +1179,7 @@
             <i class="fab fa-github"></i>
             <span>Explore the codes</span>
         </a>
-    </div>
+    </div>
 </div>
 
 <div id="mobile-app-page" class="full-page">
@@ -1173,6 +1223,154 @@
             <i class="fab fa-github"></i>
             <span>Explore the codes</span>
         </a>
+    </div>
+</div>
+
+<div id="cicd-pipeline-page" class="full-page">
+    <div class="back-button">
+       <svg xmlns="http://www.w3.org/2000/svg" class="exit-icon" viewBox="0 0 24 24">
+           <path class="frame" d="M10 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path>
+           <path class="arrow" d="M17 16l4-4-4-4"></path>
+           <path class="arrow-line" d="M21 12H9"></path>
+       </svg>
+   </div>
+    <div class="container">
+       <h2 class="section-title">End-to-End CI/CD Pipeline</h2>
+       <div class="project-detail-layout">
+           <div class="project-carousel">
+               <div class="carousel-track">
+                    <div class="carousel-item" data-type="image">
+                        <img src="https://drive.google.com/thumbnail?id=1MkU47ro2UFx3qxlwVIrXY-ot6cNTj_2b&sz=w1000" alt="CI/CD Pipeline Architecture">
+                   </div>
+               </div>
+           </div>
+           <div class="project-description">
+                <h4><i class="fas fa-cogs"></i> Process Overview</h4>
+                <ol>
+                    <li>Used Terraform to provision an AWS CodePipeline.</li>
+                    <li>Configured the pipeline with:
+                        <ul>
+                            <li>Source stage connected to GitHub or CodeCommit.</li>
+                            <li>Build stage using AWS CodeBuild.</li>
+                            <li>Deploy stage using AWS CodeDeploy or EC2.</li>
+                        </ul>
+                    </li>
+                    <li>Defined all required infrastructure using Terraform, including:
+                        <ul>
+                            <li>CodePipeline, CodeBuild, and CodeDeploy resources.</li>
+                            <li>IAM roles and policies.</li>
+                            <li>S3 buckets for artifact storage.</li>
+                        </ul>
+                    </li>
+                    <li>Used Terratest to write infrastructure tests and validate the Terraform modules.</li>
+                    <li>Applied Terraform to create the pipeline and confirmed successful setup.</li>
+                </ol>
+           </div>
+       </div>
+       <div class="repo-links-container">
+            <a href="https://github.com/jagyanjit/DevopsProject1" target="_blank" class="repo-link">
+                <i class="fab fa-github"></i>
+                <span>Explore the codes</span>
+            </a>
+            <a href="https://docs.google.com/document/d/1BrmY6poKK3PfhS8PtQmzWv3cpQSjZQxX/edit?usp=sharing&ouid=102413956562003041794&rtpof=true&sd=true" target="_blank" class="repo-link">
+                <i class="fas fa-file-alt"></i>
+                <span>Know the process</span>
+            </a>
+       </div>
+   </div>
+</div>
+
+
+<div id="devsecops-page" class="full-page">
+    <div class="back-button">
+       <svg xmlns="http://www.w3.org/2000/svg" class="exit-icon" viewBox="0 0 24 24">
+           <path class="frame" d="M10 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path>
+           <path class="arrow" d="M17 16l4-4-4-4"></path>
+           <path class="arrow-line" d="M21 12H9"></path>
+       </svg>
+   </div>
+    <div class="container">
+       <h2 class="section-title">DevSecOps Implementation</h2>
+       <div class="project-detail-layout">
+           <div class="project-carousel">
+               <div class="carousel-track">
+                    <div class="carousel-item" data-type="image">
+                        <img src="https://drive.google.com/thumbnail?id=1_dH_CeM85sOouNyNFqY0_wq1Vw9Ci-ok&sz=w1000" alt="DevSecOps Pipeline Architecture">
+                   </div>
+               </div>
+           </div>
+           <div class="project-description">
+                <h4><i class="fas fa-cogs"></i> Process Overview</h4>
+                <ol>
+                    <li>Used GitHub Actions to automate the CI/CD workflow.</li>
+                    <li>Integrated security scanning into the workflow using:
+                        <ul>
+                            <li>tfsec for Terraform code.</li>
+                            <li>Trivy for Docker image scanning.</li>
+                        </ul>
+                    </li>
+                    <li>Implemented Sealed Secrets to manage Kubernetes secrets securely before deploying workloads.
+                        <ul>
+                            <li>Stored secrets in encrypted SealedSecrets format.</li>
+                            <li>Applied SealedSecrets to the Kubernetes cluster as part of the deployment pipeline.</li>
+                        </ul>
+                    </li>
+                    <li>Ensured the GitHub Actions workflow:
+                        <ul>
+                            <li>Executed on each code push.</li>
+                            <li>Ran security scans.</li>
+                            <li>Applied SealedSecrets.</li>
+                            <li>Triggered deployment to Kubernetes or updated infrastructure via Terraform.</li>
+                        </ul>
+                    </li>
+                </ol>
+           </div>
+       </div>
+       <div class="repo-links-container">
+            <a href="https://github.com/jagyanjit/DevopsProject1" target="_blank" class="repo-link">
+                <i class="fab fa-github"></i>
+                <span>Explore the codes</span>
+            </a>
+            <a href="https://docs.google.com/document/d/1BrmY6poKK3PfhS8PtQmzWv3cpQSjZQxX/edit?usp=sharing&ouid=102413956562003041794&rtpof=true&sd=true" target="_blank" class="repo-link">
+                <i class="fas fa-file-alt"></i>
+                <span>Know the process</span>
+            </a>
+       </div>
+   </div>
+</div>
+
+<div id="ml-predictions-page" class="full-page">
+    <div class="back-button">
+       <svg xmlns="http://www.w3.org/2000/svg" class="exit-icon" viewBox="0 0 24 24">
+           <path class="frame" d="M10 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path>
+           <path class="arrow" d="M17 16l4-4-4-4"></path>
+           <path class="arrow-line" d="M21 12H9"></path>
+       </svg>
+   </div>
+    <div class="container">
+       <h2 class="section-title">ML-Powered Predictions</h2>
+       <div class="project-detail-layout">
+           <a href="https://github.com/jagyanjit/Machine-Learning-and-Deep-Learning/blob/main/Project_crop.ipynb" target="_blank" class="ml-card-link">
+                <div class="ml-card">
+                    <h4><i class="fas fa-leaf"></i> Crop Recommendation</h4>
+                    <ol>
+                        <li>Developed a model to recommend optimal crops based on soil and environmental data.</li>
+                        <li>Compared Gaussian Naive Bayes, Decision Tree, and Random Forest to find the best performer.</li>
+                        <li>Achieved ~99.5% testing accuracy with the top-performing Random Forest Classifier.</li>
+                    </ol>
+                </div>
+           </a>
+           <a href="https://github.com/jagyanjit/Machine-Learning-and-Deep-Learning/blob/main/Project_covid.ipynb" target="_blank" class="ml-card-link">
+                <div class="ml-card">
+                    <h4><i class="fas fa-virus-covid"></i> Covid-19 Prediction</h4>
+                    <ol>
+                        <li>Built a model to predict COVID-19 test results using symptom and demographic data.</li>
+                        <li>Trained a Logistic Regression model after preprocessing and encoding categorical data.</li>
+                        <li>Validated model performance with a confusion matrix and a classification report.</li>
+                    </ol>
+                </div>
+            </a>
+       </div>
     </div>
 </div>
 
@@ -1321,10 +1519,15 @@
             });
         };
 
-        const showHome = () => {
+        const showHome = (scrollToSection = false) => {
             allPages.forEach(page => page.style.display = 'none');
             mainContent.style.display = 'block';
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (scrollToSection) {
+                 document.getElementById('explore').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         };
         
         const closeAndResetMedia = () => {
@@ -1341,6 +1544,10 @@
         document.getElementById('view-achievements-btn').addEventListener('click', () => showPage(document.getElementById('achievements-page')));
         document.getElementById('morse-code-card').addEventListener('click', () => showPage(document.getElementById('morse-project-page')));
         document.getElementById('mobile-app-card').addEventListener('click', () => showPage(document.getElementById('mobile-app-page')));
+        document.getElementById('cicd-pipeline-card').addEventListener('click', () => showPage(document.getElementById('cicd-pipeline-page')));
+        document.getElementById('devsecops-card').addEventListener('click', () => showPage(document.getElementById('devsecops-page')));
+        document.getElementById('ml-predictions-card').addEventListener('click', () => showPage(document.getElementById('ml-predictions-page')));
+
         document.getElementById('home-link').addEventListener('click', (e) => {
             e.preventDefault();
             showHome();
@@ -1350,9 +1557,14 @@
             button.addEventListener('click', () => {
                 closeAndResetMedia();
                 const currentPage = button.closest('.full-page');
-                if (currentPage.id === 'morse-project-page' || currentPage.id === 'mobile-app-page') {
+                const isProjectDetailPage = ['morse-project-page', 'mobile-app-page', 'cicd-pipeline-page', 'devsecops-page', 'ml-predictions-page'].includes(currentPage.id);
+                
+                if (isProjectDetailPage) {
                     showPage(document.getElementById('projects-page'));
-                } else {
+                } else if (currentPage.id === 'projects-page' || currentPage.id === 'achievements-page') {
+                    showHome(true);
+                }
+                else {
                     showHome();
                 }
             });
@@ -1361,11 +1573,17 @@
         // --- LIGHTBOX LOGIC ---
         const lightbox = document.getElementById('lightbox');
         const lightboxContent = lightbox.querySelector('.lightbox-content');
-        document.querySelectorAll('.cert-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const gdriveId = card.getAttribute('data-gdrive-id');
-                const imageUrl = `https://drive.google.com/thumbnail?id=${gdriveId}&sz=w1000`;
-                lightboxContent.innerHTML = `<img src="${imageUrl}" alt="Certificate">`;
+        document.querySelectorAll('.cert-card, .carousel-item[data-type="image"]').forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();
+                let imageUrl;
+                if (card.classList.contains('cert-card')) {
+                    const gdriveId = card.getAttribute('data-gdrive-id');
+                    imageUrl = `https://drive.google.com/thumbnail?id=${gdriveId}&sz=w1000`;
+                } else {
+                    imageUrl = card.querySelector('img').src;
+                }
+                lightboxContent.innerHTML = `<img src="${imageUrl}" alt="Certificate or Project Image">`;
                 lightbox.classList.add('show');
             });
         });
@@ -1376,11 +1594,35 @@
             }
         });
         
-        // --- CAROUSEL LOGIC ---
+        // --- VIDEO CLICK LOGIC ---
+        document.querySelectorAll('.carousel-item[data-type="video"]').forEach(item => {
+            const mediaContainer = item.querySelector('.media-container');
+            if(mediaContainer) {
+                mediaContainer.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const iframe = item.querySelector('iframe');
+                    const src = iframe.getAttribute('src');
+                    const autoplaySrc = src.includes('?') ? `${src}&autoplay=1` : `${src}?autoplay=1`;
+                    let lightboxVideoHtml;
+                    const aspectRatioClass = mediaContainer.classList.contains('aspect-9-16') ? 'aspect-9-16' : 'aspect-16-9';
+                    
+                    lightboxVideoHtml = `<div class="lightbox-media-container ${aspectRatioClass}"><iframe src="${autoplaySrc}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
+                    
+                    lightboxContent.innerHTML = lightboxVideoHtml;
+                    const lightboxIframe = lightboxContent.querySelector('iframe');
+                    vimeoPlayer = new Vimeo.Player(lightboxIframe);
+                    lightbox.classList.add('show');
+                });
+            }
+        });
+
+        // --- CAROUSEL NAVIGATION LOGIC ---
         document.querySelectorAll('.project-carousel').forEach(carousel => {
             const carouselTrack = carousel.querySelector('.carousel-track');
             if (!carouselTrack) return;
             const carouselItems = carousel.querySelectorAll('.carousel-item');
+            if (carouselItems.length <= 1) return;
+            
             const prevBtn = carousel.querySelector('.carousel-btn.left');
             const nextBtn = carousel.querySelector('.carousel-btn.right');
             let currentIndex = 0;
@@ -1390,41 +1632,17 @@
             };
             
             if(nextBtn && prevBtn){
-                nextBtn.addEventListener('click', () => {
+                nextBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     currentIndex = (currentIndex + 1) % carouselItems.length;
                     updateCarousel();
                 });
-                prevBtn.addEventListener('click', () => {
+                prevBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
                     currentIndex = (currentIndex - 1 + carouselItems.length) % carouselItems.length;
                     updateCarousel();
                 });
             }
-
-            carouselItems.forEach(item => {
-                const mediaContainer = item.querySelector('.media-container, img');
-                if (mediaContainer) {
-                    mediaContainer.addEventListener('click', () => {
-                        const type = item.getAttribute('data-type');
-                        const mediaElement = item.querySelector('iframe, img');
-                        const src = mediaElement.getAttribute('src');
-
-                        if (type === 'video') {
-                            const autoplaySrc = src.includes('?') ? `${src}&autoplay=1` : `${src}?autoplay=1`;
-                            let lightboxVideoHtml;
-                            const aspectRatioClass = mediaContainer.classList.contains('aspect-9-16') ? 'aspect-9-16' : 'aspect-16-9';
-                            
-                            lightboxVideoHtml = `<div class="lightbox-media-container ${aspectRatioClass}"><iframe src="${autoplaySrc}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
-                            
-                            lightboxContent.innerHTML = lightboxVideoHtml;
-                            const iframe = lightboxContent.querySelector('iframe');
-                            vimeoPlayer = new Vimeo.Player(iframe);
-                        } else {
-                            lightboxContent.innerHTML = `<img src="${src}" alt="Project Media">`;
-                        }
-                        lightbox.classList.add('show');
-                    });
-                }
-            });
         });
 
         const observerOptions = {
