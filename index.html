@@ -678,6 +678,8 @@
             width: 100%;
             margin-top: 4rem;
             max-width: 1200px;
+            justify-content: center;
+            gap: 2rem;
         }
         .repo-links-container .repo-link-group {
             flex: 1;
@@ -752,7 +754,6 @@
             color: var(--text);
             font-weight: 600;
         }
-        
         #ml-predictions-page .project-detail-layout {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -1155,31 +1156,33 @@
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
             <div class="project-description">
                 <h4><i class="fas fa-cogs"></i> Construction</h4>
                 <p>
-                    <b>Input:</b> IR sensor detects Morse signals (short = dot, long = dash).
-                    <b>Processing:</b> ESP32 firmware (morse_to_text.ino) times signals, converts them into Morse strings, and maps them to characters.
-                    <b>Display:</b> Characters appear on an LCD screen for immediate feedback.
-                    <b>Communication:</b> Text is sent via Bluetooth to a Python program.
+                    <b>Input:</b> IR sensor detects Morse signals (short = dot, long = dash).<br>
+                    <b>Processing:</b> ESP32 firmware (morse_to_text.ino) times signals, converts them into Morse strings, and maps them to characters.<br>
+                    <b>Display:</b> Characters appear on an LCD screen for immediate feedback.<br>
+                    <b>Communication:</b> Text is sent via Bluetooth to a Python program.<br>
                     <b>Output:</b> Python converts text to speech; GSM module can place emergency calls.
                 </p>
                 <h4><i class="fas fa-lightbulb"></i> Working Principle</h4>
                 <p>
-                    User taps signals → IR sensor captures ON/OFF durations.
-                    Firmware distinguishes dots, dashes, and gaps.
-                    Morse sequence is matched to a letter using a lookup table.
-                    Letter is shown on the LCD and transmitted to Python.
+                    User taps signals → IR sensor captures ON/OFF durations.<br>
+                    Firmware distinguishes dots, dashes, and gaps.<br>
+                    Morse sequence is matched to a letter using a lookup table.<br>
+                    Letter is shown on the LCD and transmitted to Python.<br>
                     Python speaks the message; GSM module dials if emergency code is triggered.
                 </p>
             </div>
         </div>
-        <a href="https://github.com/jagyanjit/Morse-Code-Converter" target="_blank" class="repo-link">
-            <i class="fab fa-github"></i>
-            <span>Explore the codes</span>
-        </a>
-    </div>
+        <div class="repo-links-container">
+             <a href="https://github.com/jagyanjit/Morse-Code-Converter" target="_blank" class="repo-link">
+                <i class="fab fa-github"></i>
+                <span>Explore the codes</span>
+            </a>
+        </div>
+    </div>
 </div>
 
 <div id="mobile-app-page" class="full-page">
@@ -1205,25 +1208,27 @@
             <div class="project-description">
                 <h4><i class="fas fa-cogs"></i> What it uses</h4>
                 <p>
-                    <b>JavaScript + React Native:</b> A cross-platform mobile framework.
-                    <b>React components & JSX:</b> Used for building the user interface.
-                    <b>Babel + Node/npm:</b> For transpiling and dependency management.
+                    <b>JavaScript + React Native:</b> A cross-platform mobile framework.<br>
+                    <b>React components & JSX:</b> Used for building the user interface.<br>
+                    <b>Babel + Node/npm:</b> For transpiling and dependency management.<br>
                     <b>React Context API:</b> Manages and shares state across the app.
                 </p>
                 <h4><i class="fas fa-lightbulb"></i> How it works</h4>
                 <p>
-                    <b>App.js:</b> The main entry point that loads the application.
-                    <b>AppNavigator.js:</b> Handles all navigation between different screens.
-                    <b>Screens + Components:</b> Render the UI elements and contain the logic.
+                    <b>App.js:</b> The main entry point that loads the application.<br>
+                    <b>AppNavigator.js:</b> Handles all navigation between different screens.<br>
+                    <b>Screens + Components:</b> Render the UI elements and contain the logic.<br>
                     <b>Context:</b> Provides a global state for data accessible across all screens.
                 </p>
             </div>
         </div>
-        <a href="https://github.com/jagyanjit/Dummy-Mobile-App" target="_blank" class="repo-link">
-            <i class="fab fa-github"></i>
-            <span>Explore the codes</span>
-        </a>
-    </div>
+        <div class="repo-links-container">
+            <a href="https://github.com/jagyanjit/Dummy-Mobile-App" target="_blank" class="repo-link">
+                <i class="fab fa-github"></i>
+                <span>Explore the codes</span>
+            </a>
+        </div>
+    </div>
 </div>
 
 <div id="cicd-pipeline-page" class="full-page">
@@ -1280,7 +1285,6 @@
    </div>
 </div>
 
-
 <div id="devsecops-page" class="full-page">
     <div class="back-button">
        <svg xmlns="http://www.w3.org/2000/svg" class="exit-icon" viewBox="0 0 24 24">
@@ -1336,7 +1340,7 @@
                 <span>Know the process</span>
             </a>
        </div>
-   </div>
+   </div>
 </div>
 
 <div id="ml-predictions-page" class="full-page">
