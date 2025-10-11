@@ -21,7 +21,7 @@
             --surface: hsl(260, 40%, 12%);
             --text: #e6eef6;
             --muted: #8491a0;
-            --accent: #8b5cf6;
+            --accent: #8b5cf6; /* Default Dark: Violet */
             --accent-glow: rgba(139, 92, 246, 0.2);
             --border-color: rgba(255, 255, 255, 0.08);
             --radius: 16px;
@@ -30,22 +30,48 @@
             --font-heading: 'Clash Display', sans-serif;
         }
 
+        /* --- ✨ THEME DEFINITIONS --- */
         body.light {
-            --bg: #f0f8ff; /* Light Sky Blue */
+            --bg: #f0f8ff; 
             --surface: #ffffff;
             --text: #111827;
             --muted: #6b7280;
-            --accent: #3b82f6; /* Light Blue */
+            --accent: #3b82f6; /* Default Light: Sky Blue */
             --accent-glow: rgba(59, 130, 246, 0.15);
-            --border-color: rgba(0, 0, 0, 0.15); /* Black Grid */
+            --border-color: rgba(0, 0, 0, 0.15); 
         }
+        
+        /* Light Mode Variants */
+        body.light-green { --accent: #166534; --accent-glow: rgba(22, 101, 52, 0.2); --bg: #f0fdf4; }
+        body.light-red { --accent: #991b1b; --accent-glow: rgba(153, 27, 27, 0.2); --bg: #fef2f2; }
+        body.light-black { --accent: #111827; --accent-glow: rgba(17, 24, 39, 0.2); --bg: #f9fafb; }
+        body.light-maroon { --accent: #881337; --accent-glow: rgba(136, 19, 55, 0.2); --bg: #fff1f2; }
+        body.light-navy { --accent: #1e3a8a; --accent-glow: rgba(30, 58, 138, 0.2); --bg: #eef2ff; }
+        body.light-teal { --accent: #0f766e; --accent-glow: rgba(15, 118, 110, 0.2); --bg: #f0fdfa; }
+        body.light-indigo { --accent: #4338ca; --accent-glow: rgba(67, 56, 202, 0.2); --bg: #eef2ff; }
+        body.light-slate { --accent: #475569; --accent-glow: rgba(71, 85, 105, 0.2); --bg: #f8fafc; }
+        body.light-orange { --accent: #c2410c; --accent-glow: rgba(194, 65, 12, 0.2); --bg: #fff7ed; }
+        body.light-amber { --accent: #b45309; --accent-glow: rgba(180, 83, 9, 0.2); --bg: #fffbeb; }
+        body.light-purple { --accent: #6d28d9; --accent-glow: rgba(109, 40, 217, 0.2); --bg: #f5f3ff; }
+
+        /* Dark Mode Variants */
+        body.dark-sky-green { --accent: #6ee7b7; --accent-glow: rgba(110, 231, 183, 0.2); }
+        body.dark-sky-red { --accent: #f87171; --accent-glow: rgba(248, 113, 113, 0.2); }
+        body.dark-sky-pink { --accent: #f472b6; --accent-glow: rgba(244, 114, 182, 0.2); }
+        body.dark-sky-orange { --accent: #fb923c; --accent-glow: rgba(251, 146, 60, 0.2); }
+        body.dark-peach { --accent: #fecaca; --accent-glow: rgba(254, 202, 202, 0.2); }
+        body.dark-sky-blue { --accent: #7dd3fc; --accent-glow: rgba(125, 211, 252, 0.2); }
+        body.dark-sky-indigo { --accent: #a5b4fc; --accent-glow: rgba(165, 180, 252, 0.2); }
+        body.dark-slate { --accent: #94a3b8; --accent-glow: rgba(148, 163, 184, 0.2); }
+        body.dark-amber { --accent: #fcd34d; --accent-glow: rgba(252, 211, 77, 0.2); }
+        body.dark-lime { --accent: #bef264; --accent-glow: rgba(190, 242, 100, 0.2); }
+        body.dark-purple { --accent: #c084fc; --accent-glow: rgba(192, 132, 252, 0.2); }
+
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         html { 
             scroll-behavior: smooth;
-            --cursor-size: 8px;
-            --cursor-outline-size: 30px;
         }
 
         body {
@@ -53,7 +79,7 @@
             color: var(--text);
             font-family: var(--font-body);
             line-height: 1.6;
-            transition: background 0.3s, color 0.3s;
+            transition: background-color 0.3s, color 0.3s;
             overflow-x: hidden;
         }
         
@@ -92,43 +118,6 @@
             z-index: -1;
             opacity: 1; 
             transition: background 0.1s linear;
-        }
-
-        /* 🖱️ Custom Cursor */
-        .cursor-dot, .cursor-outline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            transition: opacity 0.3s, transform 0.3s;
-        }
-        .cursor-dot {
-            display: none; /* Hide the custom dot */
-            width: var(--cursor-size);
-            height: var(--cursor-size);
-            background-color: var(--accent);
-            transition: transform 0.1s;
-        }
-        .cursor-outline {
-            width: var(--cursor-outline-size);
-            height: var(--cursor-outline-size);
-            border: none; /* Changed from '2px solid var(--accent)' */
-            background-color: transparent; /* Changed from rgba(139, 92, 246, 0.1) */
-        }
-        body.light .cursor-outline {
-             background-color: transparent; /* Changed from rgba(59, 130, 246, 0.1) */
-        }
-
-        body:has(a:hover, button:hover, .explore-card-link:hover, .cert-card:hover, .carousel-item:hover, .ml-card-link:hover, .card-link:hover, .skill-tag:hover) .cursor-outline {
-            width: calc(var(--cursor-outline-size) * 1.5);
-            height: calc(var(--cursor-outline-size) * 1.5);
-            background-color: transparent; /* Remove circle on hover */
-        }
-        body.light:has(a:hover, button:hover, .explore-card-link:hover, .cert-card:hover, .carousel-item:hover, .ml-card-link:hover, .card-link:hover, .skill-tag:hover) .cursor-outline {
-             background-color: transparent; /* Remove circle on hover */
         }
 
         img { max-width: 100%; display: block; }
@@ -200,6 +189,94 @@
         nav a:hover { color: var(--accent); }
         nav a:hover:after { width: 100%; left: 0; }
         
+        /* --- Appearance Menu --- */
+        .appearance-menu {
+            position: relative;
+        }
+
+        #appearance-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .appearance-dropdown {
+            display: none;
+            position: absolute;
+            top: 150%;
+            right: 0;
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1rem;
+            z-index: 1100;
+            width: 350px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .appearance-dropdown.show {
+            display: block;
+        }
+
+        .theme-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .appearance-dropdown .theme-section h4 {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+        }
+
+        .appearance-dropdown button {
+            background: none;
+            border: none;
+            color: var(--text);
+            padding: 0.5rem;
+            width: 100%;
+            text-align: left;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-size: 15px;
+            transition: background 0.3s, color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .tick-icon {
+            width: 16px;
+            height: 16px;
+            stroke: var(--accent);
+            stroke-width: 2.5;
+            display: none; /* Hidden by default */
+        }
+
+        .appearance-dropdown button.selected .tick-icon {
+            display: block; /* Show when parent button is selected */
+        }
+        
+        .appearance-dropdown button.selected {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+
+        .appearance-dropdown button:hover {
+            background-color: var(--accent);
+            color: white !important;
+        }
+        body.light .appearance-dropdown button:hover {
+            color: white !important;
+        }
+
+
         .theme-btn {
             background: none;
             border: none;
@@ -355,12 +432,6 @@
         }
         .explore-card h3 { font-size: 24px; margin-bottom: 10px; color: var(--text); }
         .explore-card p { color: var(--muted); }
-        body.light .explore-card h3 {
-             color: var(--text);
-        }
-        body.light .explore-card p {
-            color: var(--muted);
-        }
         
         /* --- 🎓 EDUCATION SECTION --- */
         .timeline { max-width: 800px; margin: 0 auto; position: relative; }
@@ -397,8 +468,8 @@
              animation: pulse-light 2s infinite cubic-bezier(0.66, 0, 0, 1);
         }
         @keyframes pulse-light {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.2); }
-            50% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+            0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
+            50% { box-shadow: 0 0 0 10px var(--accent-glow); }
         }
         .timeline-item h3 { font-size: 22px; margin-bottom: 5px; }
         .timeline-item .period { font-size: 14px; color: var(--muted); font-weight: 500; margin-bottom: 10px; }
@@ -422,6 +493,9 @@
             max-width: 400px;
             transform: translateX(94%);
             transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .chart-wrapper {
@@ -431,7 +505,7 @@
         }
         
         #custom-legend {
-            display: flex;
+            display: inline-flex; /* Changed to inline-flex */
             justify-content: center;
             gap: 24px;
             margin-top: 32px;
@@ -472,6 +546,7 @@
             font-size: 14px;
             font-weight: 500;
             color: var(--muted);
+            white-space: nowrap; /* Prevents text from wrapping */
         }
 
         .legend-color-box {
@@ -529,6 +604,24 @@
             color: #ffffff;
         }
 
+        /* --- LIGHT MODE BORDER REFINEMENTS --- */
+        body.light .explore-card,
+        body.light .card,
+        body.light #custom-legend {
+            border: 1px solid var(--border-color);
+        }
+
+        body.light .timeline-item {
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        body.light .profile-pic {
+            border-color: var(--border-color);
+        }
+
+
         #skillsChart { 
             filter: drop-shadow(0 0 20px var(--accent-glow));
         }
@@ -538,7 +631,6 @@
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            /* background-color: var(--bg); <-- This is removed to allow the grid to show */
             overflow-y: auto;
             z-index: 1100;
             padding: 140px 0;
@@ -928,8 +1020,6 @@
             }
         }
         @media(max-width: 768px){
-            body { cursor: auto; } /* Disable custom cursor on mobile */
-            .cursor-dot, .cursor-outline { display: none; }
             header { flex-direction: column; gap: 16px; padding: 16px 5%; }
             nav {
                 gap: 20px; /* Reduced gap for smaller screens */
@@ -954,9 +1044,6 @@
 </head>
 <body>
 
-<div class="cursor-dot"></div>
-<div class="cursor-outline"></div>
-
 <header id="header">
     <h1><a href="#" id="home-link">Jagyanjit Rout</a></h1>
     <nav>
@@ -964,6 +1051,43 @@
         <a href="#explore">My Works</a>
         <a href="#education">Education</a>
         <a href="#contact">Contact</a>
+        <div class="appearance-menu">
+             <a href="#" id="appearance-btn">Appearance</a>
+             <div class="appearance-dropdown">
+                <div class="theme-columns">
+                    <div class="theme-section">
+                        <h4>Dark Mode</h4>
+                        <button data-theme="dark">Violet (Default)<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="dark-sky-green">Green<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="dark-sky-red">Red<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="dark-sky-pink">Pink<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="dark-sky-orange">Orange<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="dark-peach">Peach<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="dark-sky-blue">Blue<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="dark-sky-indigo">Indigo<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="dark-slate">Slate<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="dark-amber">Amber<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="dark-lime">Lime<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="dark-purple">Purple<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                    </div>
+                    <div class="theme-section">
+                        <h4>Light Mode</h4>
+                        <button data-theme="light">Blue (Default)<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="light-green">Green<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="light-red">Red<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="light-black">Black<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="light-maroon">Maroon<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="light-navy">Navy<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="light-teal">Teal<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="light-indigo">Indigo<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="light-slate">Slate<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="light-orange">Orange<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="light-amber">Amber<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                        <button data-theme="light-purple">Purple<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <button class="theme-btn" id="themeToggle">
             <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="4"></circle>
@@ -1101,6 +1225,7 @@
                 <a href="https://www.linkedin.com/in/jagyanjit/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/jagyanjit" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
                 <a href="https://x.com/jagyanjit" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://leetcode.com/u/jjB_Y_cFR/" target="_blank" aria-label="LeetCode"><i class="fas fa-code"></i></a>
             </div>
             <p>© 2025 Jagyanjit Rout. All rights reserved.</p>
         </div>
@@ -1455,41 +1580,82 @@
     </div>
 </div>
 
+<div id="lightbox" class="lightbox-overlay">
+    <div class="lightbox-content"></div>
+</div>
+
 <script src="https://player.vimeo.com/api/player.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
 
         const themeBtn = document.getElementById('themeToggle');
+        const appearanceBtn = document.getElementById('appearance-btn');
+        const appearanceDropdown = document.querySelector('.appearance-dropdown');
         const body = document.body;
         const skillsChartCanvas = document.getElementById('skillsChart');
         let skillsChart;
         let vimeoPlayer = null;
         let cameFromSkills = false;
 
-        const applyTheme = (theme) => {
-            body.classList.toggle('light', theme === 'light');
+        const setAppearance = (fullThemeName) => {
+            const isLight = fullThemeName.startsWith('light');
+            const themeMode = isLight ? 'light' : 'dark';
+            
+            // Update storage
+            localStorage.setItem('theme', themeMode);
+            if (isLight) {
+                localStorage.setItem('last-light-theme', fullThemeName);
+            } else {
+                localStorage.setItem('last-dark-theme', fullThemeName);
+            }
+            
+            // Clear old theme classes from body
+            const classesToRemove = [...body.classList].filter(c => c.startsWith('light-') || c.startsWith('dark-'));
+            body.classList.remove(...classesToRemove, 'light');
+            
+            // Add new classes
+            if (isLight) {
+                body.classList.add('light');
+            }
+            if (fullThemeName !== 'light' && fullThemeName !== 'dark') {
+                body.classList.add(fullThemeName);
+            }
+
+            // Update selected indicator
+            const allThemeButtons = document.querySelectorAll('.appearance-dropdown button[data-theme]');
+            allThemeButtons.forEach(btn => btn.classList.remove('selected'));
+            const selectedButton = document.querySelector(`.appearance-dropdown button[data-theme="${fullThemeName}"]`);
+            if (selectedButton) {
+                selectedButton.classList.add('selected');
+            }
+
+
+            if (appearanceDropdown.classList.contains('show')) {
+                appearanceDropdown.classList.remove('show');
+            }
+
+            // Redraw chart if it has been rendered
+            if (skillsChart) {
+                const skillsSection = document.getElementById('skills');
+                if (skillsSection.classList.contains('fade-in')) {
+                   createChart();
+                }
+            }
         };
 
         const generateCustomLegend = (chart) => {
             const legendContainer = document.getElementById('custom-legend');
             if (!legendContainer) return;
-
             const legendItems = chart.data.labels.map((label, index) => {
                 const backgroundColor = chart.data.datasets[0].backgroundColor[index];
-                return `
-                    <div class="legend-item">
-                        <span class="legend-color-box" style="background-color: ${backgroundColor}"></span>
-                         <span>${label}</span>
-                    </div>
-                `;
-            });
-            legendContainer.innerHTML = legendItems.join('');
+                return `<div class="legend-item"><span class="legend-color-box" style="background-color: ${backgroundColor}"></span><span>${label}</span></div>`;
+            }).join('');
+            legendContainer.innerHTML = legendItems;
         };
 
         const createChart = () => {
             if (!skillsChartCanvas) return;
             const ctx = skillsChartCanvas.getContext('2d');
-            
             const skillsWrapper = document.querySelector('.skills-content-wrapper');
 
             if (skillsChart) {
@@ -1538,35 +1704,57 @@
             generateCustomLegend(skillsChart);
         };
         
-        const currentTheme = localStorage.getItem('theme') || 'dark';
-        applyTheme(currentTheme);
+        // --- INITIAL THEME AND APPEARANCE LOGIC ---
+        const savedMode = localStorage.getItem('theme') || 'dark';
+        const initialThemeName = savedMode === 'light' 
+            ? (localStorage.getItem('last-light-theme') || 'light')
+            : (localStorage.getItem('last-dark-theme') || 'dark');
+        setAppearance(initialThemeName);
 
+        // --- EVENT LISTENERS ---
+
+        // Main Theme Toggle (sun/moon icon)
         themeBtn.addEventListener('click', () => {
-            const newTheme = body.classList.contains('light') ? 'dark' : 'light';
-            localStorage.setItem('theme', newTheme);
-            applyTheme(newTheme);
+            const isCurrentlyLight = body.classList.contains('light');
+            const targetTheme = isCurrentlyLight
+                ? (localStorage.getItem('last-dark-theme') || 'dark')
+                : (localStorage.getItem('last-light-theme') || 'light');
+            setAppearance(targetTheme);
         });
+
+        // Appearance Dropdown Toggle
+        appearanceBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            appearanceDropdown.classList.toggle('show');
+        });
+
+        // Appearance Option Selection
+        appearanceDropdown.addEventListener('click', e => {
+            const button = e.target.closest('button[data-theme]');
+            if (button) {
+                setAppearance(button.dataset.theme);
+            }
+        });
+
+
+        // Close dropdown on outside click
+        window.addEventListener('click', (e) => {
+            if (appearanceDropdown.classList.contains('show') && !appearanceDropdown.contains(e.target) && e.target !== appearanceBtn) {
+                appearanceDropdown.classList.remove('show');
+            }
+        });
+
 
         const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             header.classList.toggle('scrolled', window.scrollY > 50 && !document.querySelector('.full-page[style*="display: flex"]'));
         });
 
-        const cursorDot = document.querySelector('.cursor-dot');
-        const cursorOutline = document.querySelector('.cursor-outline');
         window.addEventListener('mousemove', (e) => {
             const { clientX, clientY } = e;
             body.style.setProperty('--x', `${clientX}px`);
             body.style.setProperty('--y', `${clientY}px`);
-            
-            // The following two lines for cursorDot can be removed, but are kept for structure
-            cursorDot.style.left = `${clientX}px`;
-            cursorDot.style.top = `${clientY}px`;
-
-            cursorOutline.animate({
-                left: `${clientX}px`,
-                top: `${clientY}px`
-            }, { duration: 500, fill: "forwards"});
         });
 
         const mainContent = document.getElementById('main-content');
