@@ -36,36 +36,36 @@
             --surface: #ffffff;
             --text: #111827;
             --muted: #6b7280;
-            --accent: #3b82f6; /* Default Light: Sky Blue */
+            --accent: #3b82f6; /* Default Light: Blue */
             --accent-glow: rgba(59, 130, 246, 0.15);
             --border-color: rgba(0, 0, 0, 0.15); 
         }
         
         /* Light Mode Variants */
+        body.light-violet { --accent: #6d28d9; --accent-glow: rgba(109, 40, 217, 0.2); --bg: #f5f3ff; }
         body.light-green { --accent: #166534; --accent-glow: rgba(22, 101, 52, 0.2); --bg: #f0fdf4; }
         body.light-red { --accent: #991b1b; --accent-glow: rgba(153, 27, 27, 0.2); --bg: #fef2f2; }
-        body.light-black { --accent: #111827; --accent-glow: rgba(17, 24, 39, 0.2); --bg: #f9fafb; }
-        body.light-maroon { --accent: #881337; --accent-glow: rgba(136, 19, 55, 0.2); --bg: #fff1f2; }
-        body.light-navy { --accent: #1e3a8a; --accent-glow: rgba(30, 58, 138, 0.2); --bg: #eef2ff; }
-        body.light-teal { --accent: #0f766e; --accent-glow: rgba(15, 118, 110, 0.2); --bg: #f0fdfa; }
+        body.light-pink { --accent: #881337; --accent-glow: rgba(136, 19, 55, 0.2); --bg: #fff1f2; }
+        body.light-orange { --accent: #c2410c; --accent-glow: rgba(194, 65, 12, 0.2); --bg: #fff7ed; }
+        body.light-rose { --accent: #e11d48; --accent-glow: rgba(225, 29, 72, 0.2); --bg: #fff1f2; }
         body.light-indigo { --accent: #4338ca; --accent-glow: rgba(67, 56, 202, 0.2); --bg: #eef2ff; }
         body.light-slate { --accent: #475569; --accent-glow: rgba(71, 85, 105, 0.2); --bg: #f8fafc; }
-        body.light-orange { --accent: #c2410c; --accent-glow: rgba(194, 65, 12, 0.2); --bg: #fff7ed; }
         body.light-amber { --accent: #b45309; --accent-glow: rgba(180, 83, 9, 0.2); --bg: #fffbeb; }
-        body.light-purple { --accent: #6d28d9; --accent-glow: rgba(109, 40, 217, 0.2); --bg: #f5f3ff; }
+        body.light-teal { --accent: #0f766e; --accent-glow: rgba(15, 118, 110, 0.2); --bg: #f0fdfa; }
+        body.light-gray { --accent: #111827; --accent-glow: rgba(17, 24, 39, 0.2); --bg: #f9fafb; }
 
         /* Dark Mode Variants */
-        body.dark-sky-green { --accent: #6ee7b7; --accent-glow: rgba(110, 231, 183, 0.2); }
-        body.dark-sky-red { --accent: #f87171; --accent-glow: rgba(248, 113, 113, 0.2); }
-        body.dark-sky-pink { --accent: #f472b6; --accent-glow: rgba(244, 114, 182, 0.2); }
-        body.dark-sky-orange { --accent: #fb923c; --accent-glow: rgba(251, 146, 60, 0.2); }
-        body.dark-peach { --accent: #fecaca; --accent-glow: rgba(254, 202, 202, 0.2); }
-        body.dark-sky-blue { --accent: #7dd3fc; --accent-glow: rgba(125, 211, 252, 0.2); }
-        body.dark-sky-indigo { --accent: #a5b4fc; --accent-glow: rgba(165, 180, 252, 0.2); }
+        body.dark-green { --accent: #6ee7b7; --accent-glow: rgba(110, 231, 183, 0.2); }
+        body.dark-red { --accent: #f87171; --accent-glow: rgba(248, 113, 113, 0.2); }
+        body.dark-pink { --accent: #f472b6; --accent-glow: rgba(244, 114, 182, 0.2); }
+        body.dark-orange { --accent: #fb923c; --accent-glow: rgba(251, 146, 60, 0.2); }
+        body.dark-rose { --accent: #fecaca; --accent-glow: rgba(254, 202, 202, 0.2); }
+        body.dark-blue { --accent: #7dd3fc; --accent-glow: rgba(125, 211, 252, 0.2); }
+        body.dark-indigo { --accent: #a5b4fc; --accent-glow: rgba(165, 180, 252, 0.2); }
         body.dark-slate { --accent: #94a3b8; --accent-glow: rgba(148, 163, 184, 0.2); }
         body.dark-amber { --accent: #fcd34d; --accent-glow: rgba(252, 211, 77, 0.2); }
-        body.dark-lime { --accent: #bef264; --accent-glow: rgba(190, 242, 100, 0.2); }
-        body.dark-purple { --accent: #c084fc; --accent-glow: rgba(192, 132, 252, 0.2); }
+        body.dark-teal { --accent: #bef264; --accent-glow: rgba(190, 242, 100, 0.2); }
+        body.dark-gray { --accent: #9ca3af; --accent-glow: rgba(156, 163, 175, 0.2); }
 
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -129,13 +129,13 @@
         }
 
         section {
-            padding: 120px 0; /* Reduced padding from 140px */
+            padding: 120px 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
-        h1, h2, h3 { font-family: var(--font-heading); font-weight: 700; }
+        h1, h2, h3, h5 { font-family: var(--font-heading); font-weight: 700; }
         
         /* --- ✨ HEADER --- */
         header {
@@ -168,7 +168,7 @@
         header h1 a:hover {
             color: var(--accent);
         }
-        nav { display: flex; align-items: center; gap: 32px; }
+        nav { display: flex; align-items: center; gap: 24px; }
         nav a {
             color: var(--muted);
             text-decoration: none;
@@ -189,19 +189,27 @@
         nav a:hover { color: var(--accent); }
         nav a:hover:after { width: 100%; left: 0; }
         
-        /* --- Appearance Menu --- */
-        .appearance-menu {
+        /* --- Settings Menu --- */
+        .settings-menu {
             position: relative;
         }
-
-        #appearance-btn {
+        #settings-btn {
             background: none;
             border: none;
             cursor: pointer;
             padding: 0;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
         }
-
-        .appearance-dropdown {
+        #settings-btn:hover {
+            color: var(--accent);
+        }
+        #settings-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+        .settings-dropdown {
             display: none;
             position: absolute;
             top: 150%;
@@ -209,31 +217,63 @@
             background: var(--surface);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
-            padding: 1rem;
+            padding: 0.5rem;
             z-index: 1100;
-            width: 350px;
+            width: 160px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.2);
         }
-
-        .appearance-dropdown.show {
+        .settings-dropdown.show {
             display: block;
         }
-
-        .theme-columns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
+        .settings-item {
+            position: relative;
+            padding: 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-
-        .appearance-dropdown .theme-section h4 {
-            font-size: 14px;
-            color: var(--muted);
-            margin-bottom: 0.5rem;
+        .settings-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: -10px; /* Extends past the item's boundary */
+            width: 20px; /* Creates an invisible bridge */
+        }
+        .settings-item:hover {
+             background: var(--accent);
+             color: white;
+        }
+        .settings-item:hover > span {
+            color: white;
+        }
+        .settings-item > span {
+            color: var(--text);
             font-family: var(--font-body);
-            font-weight: 600;
+            font-size: 15px;
+            font-weight: 500;
         }
-
-        .appearance-dropdown button {
+        .submenu {
+            display: none;
+            position: absolute;
+            top: -0.5rem; 
+            right: 100%;
+            margin-right: 0; /* Removed the gap */
+            background: var(--surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 0.5rem;
+            width: 200px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .settings-item:hover .submenu {
+            display: block;
+        }
+        .submenu button {
             background: none;
             border: none;
             color: var(--text);
@@ -249,34 +289,27 @@
             align-items: center;
             justify-content: space-between;
         }
-        
         .tick-icon {
             width: 16px;
             height: 16px;
             stroke: var(--accent);
             stroke-width: 2.5;
-            display: none; /* Hidden by default */
+            display: none;
         }
-
-        .appearance-dropdown button.selected .tick-icon {
-            display: block; /* Show when parent button is selected */
+        .submenu button.selected .tick-icon {
+            display: block;
         }
-        
-        .appearance-dropdown button.selected {
+        .submenu button.selected {
             font-weight: 600;
             color: var(--accent);
         }
-
-
-        .appearance-dropdown button:hover {
+        .submenu button:hover {
             background-color: var(--accent);
             color: white !important;
         }
-        body.light .appearance-dropdown button:hover {
+        body.light .submenu button:hover {
             color: white !important;
         }
-
-
         .theme-btn {
             background: none;
             border: none;
@@ -298,7 +331,7 @@
         .theme-btn .sun {
             transform: scale(1) rotate(0deg);
             opacity: 1;
-            stroke: #facc15; /* Yellow */
+            stroke: #facc15;
         }
         .theme-btn .moon {
             transform: scale(0);
@@ -1022,6 +1055,8 @@
         @media(max-width: 768px){
             header { flex-direction: column; gap: 16px; padding: 16px 5%; }
             nav {
+                flex-wrap: wrap;
+                justify-content: center;
                 gap: 20px; /* Reduced gap for smaller screens */
             }
             nav a {
@@ -1039,55 +1074,22 @@
                 left: 5%; 
                 right: auto; /* Overwrite the default right positioning */
             }
+             .settings-dropdown {
+                width: 90vw;
+                max-width: 420px;
+            }
         }
     </style>
 </head>
 <body>
 
 <header id="header">
-    <h1><a href="#" id="home-link">Jagyanjit Rout</a></h1>
+    <h1><a href="#" id="home-link" data-translate="home_link">Jagyanjit Rout</a></h1>
     <nav>
-        <a href="#skills">Skills</a>
-        <a href="#explore">My Works</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
-        <div class="appearance-menu">
-             <a href="#" id="appearance-btn">Appearance</a>
-             <div class="appearance-dropdown">
-                <div class="theme-columns">
-                    <div class="theme-section">
-                        <h4>Dark Mode</h4>
-                        <button data-theme="dark">Violet (Default)<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="dark-sky-green">Green<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="dark-sky-red">Red<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="dark-sky-pink">Pink<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="dark-sky-orange">Orange<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="dark-peach">Peach<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="dark-sky-blue">Blue<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="dark-sky-indigo">Indigo<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="dark-slate">Slate<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="dark-amber">Amber<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="dark-lime">Lime<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="dark-purple">Purple<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                    </div>
-                    <div class="theme-section">
-                        <h4>Light Mode</h4>
-                        <button data-theme="light">Blue (Default)<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="light-green">Green<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="light-red">Red<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="light-black">Black<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="light-maroon">Maroon<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="light-navy">Navy<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="light-teal">Teal<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="light-indigo">Indigo<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="light-slate">Slate<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="light-orange">Orange<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="light-amber">Amber<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                        <button data-theme="light-purple">Purple<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <a href="#skills" data-translate="nav_skills">Skills</a>
+        <a href="#explore" data-translate="nav_works">My Works</a>
+        <a href="#education" data-translate="nav_education">Education</a>
+        <a href="#contact" data-translate="nav_contact">Contact</a>
         <button class="theme-btn" id="themeToggle">
             <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="4"></circle>
@@ -1104,6 +1106,52 @@
                 <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
             </svg>
         </button>
+        <div class="settings-menu">
+            <button id="settings-btn" aria-label="Settings">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+            <div class="settings-dropdown">
+                <div class="settings-item">
+                     <span data-translate="settings_appearance">Appearance</span>
+                     <div class="submenu appearance-submenu">
+                         <button data-color="violet">Violet<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-color="green">Green<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-color="red">Red<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-color="pink">Pink<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-color="orange">Orange<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-color="rose">Rose<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-color="blue">Blue<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-color="indigo">Indigo<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-color="slate">Slate<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-color="amber">Amber<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-color="teal">Teal<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-color="gray">Gray<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                     </div>
+                </div>
+                 <div class="settings-item">
+                    <span data-translate="settings_language">Language</span>
+                     <div class="submenu language-submenu">
+                         <button data-lang="en">English<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-lang="ar">العربية<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-lang="de">Deutsch<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-lang="es">Español<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-lang="fr">Français<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-lang="hi">हिन्दी<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-lang="id">Bahasa Indonesia<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-lang="it">Italiano<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-lang="ja">日本語<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-lang="ko">한국어<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-lang="pt">Português<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-lang="ru">Русский<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                         <button data-lang="zh">中文<svg class="tick-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </nav>
 </header>
 
@@ -1112,8 +1160,8 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-text animated">
-                    <h2>Aspiring Cloud & Web Developer</h2>
-                    <p>I’m Jagyanjit, an aspiring Cloud & Web Developer. I enjoy building in the cloud, creating web projects, and experimenting with technologies that solve real problems. I thrive on turning ideas into practical, meaningful solutions.</p>
+                    <h2 data-translate="hero_title">Aspiring Cloud & Web Developer</h2>
+                    <p data-translate="hero_desc">I’m Jagyanjit, an aspiring Cloud & Web Developer. I enjoy building in the cloud, creating web projects, and experimenting with technologies that solve real problems. I thrive on turning ideas into practical, meaningful solutions.</p>
                 </div>
                 <div class="hero-image animated">
                     <img src="https://i.ibb.co/prwhWb7M/Picsart-25-08-25-11-28-06-390.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Profile Picture" class="profile-pic">
@@ -1123,7 +1171,7 @@
 
         <section id="skills" class="animated">
             <div class="container">
-                <h2 class="section-title">My Toolbox & Skills</h2>
+                <h2 class="section-title" data-translate="skills_title">My Toolbox & Skills</h2>
                 <div class="skills-content-wrapper">
                     <div class="skills-chart-container">
                         <div class="chart-wrapper">
@@ -1133,7 +1181,7 @@
                     </div>
                     <div class="skill-details">
                         <div class="skill-category">
-                            <h4>Programming</h4>
+                            <h4 data-translate="skills_cat_prog">Programming</h4>
                             <p>
                                 <a href="#" class="skill-tag" id="skill-python">Python</a>
                                 <a href="#" class="skill-tag" id="skill-c">C</a>
@@ -1145,7 +1193,7 @@
                             </p>
                         </div>
                         <div class="skill-category">
-                            <h4>DevOps & Cloud</h4>
+                            <h4 data-translate="skills_cat_cloud">DevOps & Cloud</h4>
                             <p>
                                 <a href="#" class="skill-tag" id="skill-aws">AWS</a>
                                 <a href="#" class="skill-tag" id="skill-docker">Docker</a>
@@ -1157,7 +1205,7 @@
                             </p>
                         </div>
                          <div class="skill-category">
-                            <h4>Machine Learning & DL</h4>
+                            <h4 data-translate="skills_cat_ml">Machine Learning & DL</h4>
                             <p>
                                 <a href="#" class="skill-tag" id="skill-scikit">Scikit-learn</a>
                                 <a href="#" class="skill-tag" id="skill-pandas">Pandas</a>
@@ -1173,20 +1221,20 @@
 
         <section id="explore">
             <div class="container">
-                <h2 class="section-title animated">Explore My Work</h2>
+                <h2 class="section-title animated" data-translate="explore_title">Explore My Work</h2>
                 <div class="explore-grid">
                     <a href="#" id="view-projects-btn" class="explore-card-link animated">
                         <div class="explore-card">
                             <div class="icon"><i class="fas fa-laptop-code"></i></div>
-                            <h3>View Projects</h3>
-                            <p>See a detailed list of my technical projects and contributions.</p>
+                            <h3 data-translate="explore_projects_title">View Projects</h3>
+                            <p data-translate="explore_projects_desc">See a detailed list of my technical projects and contributions.</p>
                         </div>
                     </a>
                     <a href="#" id="view-achievements-btn" class="explore-card-link animated">
                         <div class="explore-card">
                             <div class="icon"><i class="fas fa-trophy"></i></div>
-                            <h3>View Achievements</h3>
-                            <p>Browse my certifications and professional accomplishments.</p>
+                            <h3 data-translate="explore_achievements_title">View Achievements</h3>
+                            <p data-translate="explore_achievements_desc">Browse my certifications and professional accomplishments.</p>
                         </div>
                     </a>
                 </div>
@@ -1195,22 +1243,22 @@
         
         <section id="education">
             <div class="container">
-                <h2 class="section-title animated">Education</h2>
+                <h2 class="section-title animated" data-translate="education_title">Education</h2>
                 <div class="timeline">
                     <div class="timeline-item animated">
-                        <h3>Silicon University, Bhubaneswar</h3>
+                        <h3 data-translate="edu_uni_name">Silicon University, Bhubaneswar</h3>
                         <div class="period">2022 - 2026</div>
-                        <p>B.Tech in Electronics and Communication Engineering</p>
+                        <p data-translate="edu_uni_degree">B.Tech in Electronics and Communication Engineering</p>
                     </div>
                     <div class="timeline-item animated">
-                        <h3>Nayagarh Higher Secondary School, Nayagarh</h3>
+                        <h3 data-translate="edu_hs_name">Nayagarh Higher Secondary School, Nayagarh</h3>
                         <div class="period">2020 - 2022</div>
-                        <p>Intermediate (CHSE)</p>
+                        <p data-translate="edu_hs_degree">Intermediate (CHSE)</p>
                     </div>
                     <div class="timeline-item animated">
-                        <h3>D.A.V. Public School, Puri</h3>
+                        <h3 data-translate="edu_school_name">D.A.V. Public School, Puri</h3>
                         <div class="period">2008 - 2020</div>
-                        <p>Matriculation</p>
+                        <p data-translate="edu_school_degree">Matriculation</p>
                     </div>
                 </div>
             </div>
@@ -1227,7 +1275,7 @@
                 <a href="https://x.com/jagyanjit" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
                 <a href="https://leetcode.com/u/jjB_Y_cFR/" target="_blank" aria-label="LeetCode"><i class="fas fa-code"></i></a>
             </div>
-            <p>© 2025 Jagyanjit Rout. All rights reserved.</p>
+            <p data-translate="footer_copyright">© 2025 Jagyanjit Rout. All rights reserved.</p>
         </div>
     </footer>
 </div>
@@ -1241,36 +1289,36 @@
         </svg>
     </div>
     <div class="container">
-        <h2 class="section-title">Projects</h2>
+        <h2 class="section-title" data-translate="projects_title">Projects</h2>
         <div class="grid">
             <a href="#" id="morse-code-card" class="card-link"><div class="card">
                 <div class="card-content">
-                    <h3>Morse Code Converter (Morse-Talk)</h3>
-                    <p>Morse-Talk assists non-verbal paralyzed individuals. It converts Morse code to text and then text-to-speech and GSM emergency calls.</p>
+                    <h3 data-translate="p1_title">Morse Code Converter (Morse-Talk)</h3>
+                    <p data-translate="p1_desc">Morse-Talk assists non-verbal paralyzed individuals. It converts Morse code to text and then text-to-speech and GSM emergency calls.</p>
                 </div>
             </div></a>
             <a href="#" id="mobile-app-card" class="card-link"><div class="card">
                 <div class="card-content">
-                    <h3>Mobile Application Development</h3>
-                    <p>Built a responsive mobile app using JS, HTML, CSS & React Native, featuring a product catalog UI and basic cart functionality.</p>
+                    <h3 data-translate="p2_title">Mobile Application Development</h3>
+                    <p data-translate="p2_desc">Built a responsive mobile app using JS, HTML, CSS & React Native, featuring a product catalog UI and basic cart functionality.</p>
                 </div>
             </div></a>
             <a href="#" id="cicd-pipeline-card" class="card-link"><div class="card">
                 <div class="card-content">
-                    <h3>End-to-End CI/CD Pipeline</h3>
-                    <p>Implemented an automated CI/CD pipeline for cloud deployments using AWS CodePipeline and managed scalable infrastructure with Terraform.</p>
+                    <h3 data-translate="p3_title">End-to-End CI/CD Pipeline</h3>
+                    <p data-translate="p3_desc">Implemented an automated CI/CD pipeline for cloud deployments using AWS CodePipeline and managed scalable infrastructure with Terraform.</p>
                 </div>
             </div></a>
             <a href="#" id="devsecops-card" class="card-link"><div class="card">
                 <div class="card-content">
-                    <h3>DevSecOps Implementation</h3>
-                    <p>Enhanced deployment security by integrating security scans with tfsec and Trivy, and managed Kubernetes secrets using Sealed Secrets.</p>
+                    <h3 data-translate="p4_title">DevSecOps Implementation</h3>
+                    <p data-translate="p4_desc">Enhanced deployment security by integrating security scans with tfsec and Trivy, and managed Kubernetes secrets using Sealed Secrets.</p>
                 </div>
             </div></a>
             <a href="#" id="ml-predictions-card" class="card-link"><div class="card">
                 <div class="card-content">
-                    <h3>ML-Powered Predictions</h3>
-                    <p>Developed crop recommendation and COVID-19 prediction models using Random Forest and Logistic Regression.</p>
+                    <h3 data-translate="p5_title">ML-Powered Predictions</h3>
+                    <p data-translate="p5_desc">Developed crop recommendation and COVID-19 prediction models using Random Forest and Logistic Regression.</p>
                 </div>
             </div></a>
         </div>
@@ -1286,48 +1334,48 @@
         </svg>
     </div>
     <div class="container">
-        <h2 class="section-title">Achievements & Certifications</h2>
+        <h2 class="section-title" data-translate="achievements_title">Achievements & Certifications</h2>
         <div class="grid">
              <div class="card cert-card" data-gdrive-id="1yZNuGUxZWCTaIdsq-VN1gvnuXua4u6Wy">
                 <div class="card-content">
-                    <h3>DevOps Masters</h3>
-                    <span class="issuer">by ingenious-TechWorld</span>
+                    <h3 data-translate="cert1_title">DevOps Masters</h3>
+                    <span class="issuer" data-translate="cert1_issuer">by ingenious-TechWorld</span>
                 </div>
             </div>
             <div class="card cert-card" data-gdrive-id="1UV-_6vpEvbUU4J8A79SvRuV_tZfHqlt9">
                 <div class="card-content">
-                    <h3>Machine Learning & Deep Learning</h3>
-                    <span class="issuer">by Silicon University</span>
+                    <h3 data-translate="cert2_title">Machine Learning & Deep Learning</h3>
+                    <span class="issuer" data-translate="cert2_issuer">by Silicon University</span>
                 </div>
             </div>
              <div class="card cert-card" data-gdrive-id="1TA61paVcOIXJetUtBnxGLoO0bskiJWc-">
                 <div class="card-content">
-                    <h3>Mobile App Development using React Native</h3>
-                    <span class="issuer">by Syllogistek Systems Pvt Ltd</span>
+                    <h3 data-translate="cert3_title">Mobile App Development using React Native</h3>
+                    <span class="issuer" data-translate="cert3_issuer">by Syllogistek Systems Pvt Ltd</span>
                 </div>
             </div>
             <div class="card cert-card" data-gdrive-id="1chAsZX0bDYtVJ0-cDoFU3lfKmICD583w">
                 <div class="card-content">
-                    <h3>Introduction To Industry 4.0 And Industrial Internet Of Things</h3>
-                    <span class="issuer">by NPTEL</span>
+                    <h3 data-translate="cert4_title">Introduction To Industry 4.0 And Industrial Internet Of Things</h3>
+                    <span class="issuer" data-translate="cert4_issuer">by NPTEL</span>
                 </div>
             </div>
             <div class="card cert-card" data-gdrive-id="1JWuZFYQ3Q5K9Zfthv3HRFf3Bh6jKHYjp">
                 <div class="card-content">
-                    <h3>Understanding Incubation and Entrepreneurship</h3>
-                    <span class="issuer">by NPTEL</span>
+                    <h3 data-translate="cert5_title">Understanding Incubation and Entrepreneurship</h3>
+                    <span class="issuer" data-translate="cert5_issuer">by NPTEL</span>
                 </div>
             </div>
             <div class="card cert-card" data-gdrive-id="15X11yhWmE8EgqR--vySYoA5ANsjRiElr">
                 <div class="card-content">
-                    <h3>MATLAB Onramp</h3>
-                    <span class="issuer">by MathWorks</span>
+                    <h3 data-translate="cert6_title">MATLAB Onramp</h3>
+                    <span class="issuer" data-translate="cert6_issuer">by MathWorks</span>
                 </div>
             </div>
             <div class="card cert-card" data-gdrive-id="1pnxbSrGRZa3lcGwH9fWi6tKLB13BtQ8x">
                 <div class="card-content">
-                    <h3>MATLAB Fundamentals</h3>
-                    <span class="issuer">by MathWorks</span>
+                    <h3 data-translate="cert7_title">MATLAB Fundamentals</h3>
+                    <span class="issuer" data-translate="cert7_issuer">by MathWorks</span>
                 </div>
             </div>
         </div>
@@ -1343,7 +1391,7 @@
         </svg>
     </div>
      <div class="container">
-        <h2 class="section-title">Morse Code Converter</h2>
+        <h2 class="section-title" data-translate="p1_title">Morse Code Converter</h2>
         <div class="project-detail-layout">
             <div class="project-carousel">
                 <div class="carousel-track">
@@ -1355,16 +1403,16 @@
                 </div>
             </div>
             <div class="project-description">
-                <h4><i class="fas fa-cogs"></i> Construction</h4>
-                <p>
+                <h4 data-translate="detail_construction"><i class="fas fa-cogs"></i> Construction</h4>
+                <p data-translate="p1_detail_construction">
                     <b>Input:</b> IR sensor detects Morse signals (short = dot, long = dash).<br>
                     <b>Processing:</b> ESP32 firmware (morse_to_text.ino) times signals, converts them into Morse strings, and maps them to characters.<br>
                     <b>Display:</b> Characters appear on an LCD screen for immediate feedback.<br>
                     <b>Communication:</b> Text is sent via Bluetooth to a Python program.<br>
                     <b>Output:</b> Python converts text to speech; GSM module can place emergency calls.
                 </p>
-                <h4><i class="fas fa-lightbulb"></i> Working Principle</h4>
-                <p>
+                <h4 data-translate="detail_working"><i class="fas fa-lightbulb"></i> Working Principle</h4>
+                <p data-translate="p1_detail_working">
                     <b>1.</b> User taps signals → IR sensor captures ON/OFF durations.<br>
                     <b>2.</b> Firmware distinguishes dots, dashes, and gaps.<br>
                     <b>3.</b> Morse sequence is matched to a letter using a lookup table.<br>
@@ -1376,7 +1424,7 @@
         <div class="repo-links-container">
              <a href="https://github.com/jagyanjit/Morse-Code-Converter" target="_blank" class="repo-link">
                 <i class="fab fa-github"></i>
-                <span>Explore the codes</span>
+                <span data-translate="explore_code">Explore the codes</span>
             </a>
         </div>
     </div>
@@ -1391,7 +1439,7 @@
         </svg>
     </div>
      <div class="container">
-        <h2 class="section-title">Dummy Mobile Application</h2>
+        <h2 class="section-title" data-translate="p2_title">Dummy Mobile Application</h2>
         <div class="project-detail-layout">
             <div class="project-carousel">
                 <div class="carousel-track">
@@ -1403,15 +1451,15 @@
                 </div>
             </div>
             <div class="project-description">
-                <h4><i class="fas fa-cogs"></i> What it uses</h4>
-                <p>
+                <h4 data-translate="detail_tech_stack"><i class="fas fa-cogs"></i> What it uses</h4>
+                <p data-translate="p2_detail_tech">
                     <b>JavaScript + React Native:</b> A cross-platform mobile framework.<br>
                     <b>React components & JSX:</b> Used for building the user interface.<br>
                     <b>Babel + Node/npm:</b> For transpiling and dependency management.<br>
                     <b>React Context API:</b> Manages and shares state across the app.
                 </p>
-                <h4><i class="fas fa-lightbulb"></i> How it works</h4>
-                <p>
+                <h4 data-translate="detail_how_works"><i class="fas fa-lightbulb"></i> How it works</h4>
+                <p data-translate="p2_detail_how">
                     <b>App.js:</b> The main entry point that loads the application.<br>
                     <b>AppNavigator.js:</b> Handles all navigation between different screens.<br>
                     <b>Screens + Components:</b> Render the UI elements and contain the logic.<br>
@@ -1422,7 +1470,7 @@
         <div class="repo-links-container">
             <a href="https://github.com/jagyanjit/Dummy-Mobile-App" target="_blank" class="repo-link">
                 <i class="fab fa-github"></i>
-                <span>Explore the codes</span>
+                <span data-translate="explore_code">Explore the codes</span>
             </a>
         </div>
     </div>
@@ -1437,7 +1485,7 @@
        </svg>
    </div>
     <div class="container">
-       <h2 class="section-title">End-to-End CI/CD Pipeline</h2>
+       <h2 class="section-title" data-translate="p3_title">End-to-End CI/CD Pipeline</h2>
        <div class="project-detail-layout">
            <div class="project-carousel">
                <div class="carousel-track">
@@ -1447,36 +1495,19 @@
                </div>
            </div>
            <div class="project-description">
-                <h4><i class="fas fa-cogs"></i> Process Overview</h4>
-                <ol>
-                    <li>Used Terraform to provision an AWS CodePipeline.</li>
-                    <li>Configured the pipeline with:
-                        <ul>
-                            <li>Source stage connected to GitHub or CodeCommit.</li>
-                            <li>Build stage using AWS CodeBuild.</li>
-                            <li>Deploy stage using AWS CodeDeploy or EC2.</li>
-                        </ul>
-                    </li>
-                    <li>Defined all required infrastructure using Terraform, including:
-                        <ul>
-                            <li>CodePipeline, CodeBuild, and CodeDeploy resources.</li>
-                            <li>IAM roles and policies.</li>
-                            <li>S3 buckets for artifact storage.</li>
-                        </ul>
-                    </li>
-                    <li>Used Terratest to write infrastructure tests and validate the Terraform modules.</li>
-                    <li>Applied Terraform to create the pipeline and confirmed successful setup.</li>
+                <h4 data-translate="detail_process"><i class="fas fa-cogs"></i> Process Overview</h4>
+                <ol data-translate="p3_detail_process" class="list-based">
                 </ol>
            </div>
        </div>
        <div class="repo-links-container">
             <a href="https://github.com/jagyanjit/DevopsProject1" target="_blank" class="repo-link">
                 <i class="fab fa-github"></i>
-                <span>Explore the codes</span>
+                <span data-translate="explore_code">Explore the codes</span>
             </a>
             <a href="https://docs.google.com/document/d/1BrmY6poKK3PfhS8PtQmzWv3cpQSjZQxX/edit?usp=sharing&ouid=102413956562003041794&rtpof=true&sd=true" target="_blank" class="repo-link">
                 <i class="fas fa-file-alt"></i>
-                <span>Documentation</span>
+                <span data-translate="documentation">Documentation</span>
             </a>
        </div>
    </div>
@@ -1491,7 +1522,7 @@
        </svg>
    </div>
     <div class="container">
-       <h2 class="section-title">DevSecOps Implementation</h2>
+       <h2 class="section-title" data-translate="p4_title">DevSecOps Implementation</h2>
        <div class="project-detail-layout">
            <div class="project-carousel">
                <div class="carousel-track">
@@ -1501,40 +1532,19 @@
                </div>
            </div>
            <div class="project-description">
-                <h4><i class="fas fa-cogs"></i> Process Overview</h4>
-                <ol>
-                    <li>Used GitHub Actions to automate the CI/CD workflow.</li>
-                    <li>Integrated security scanning into the workflow using:
-                        <ul>
-                            <li>tfsec for Terraform code.</li>
-                            <li>Trivy for Docker image scanning.</li>
-                        </ul>
-                    </li>
-                    <li>Implemented Sealed Secrets to manage Kubernetes secrets securely before deploying workloads.
-                        <ul>
-                            <li>Stored secrets in encrypted SealedSecrets format.</li>
-                            <li>Applied SealedSecrets to the Kubernetes cluster as part of the deployment pipeline.</li>
-                        </ul>
-                    </li>
-                    <li>Ensured the GitHub Actions workflow:
-                        <ul>
-                            <li>Executed on each code push.</li>
-                            <li>Ran security scans.</li>
-                            <li>Applied SealedSecrets.</li>
-                            <li>Triggered deployment to Kubernetes or updated infrastructure via Terraform.</li>
-                        </ul>
-                    </li>
+                <h4 data-translate="detail_process"><i class="fas fa-cogs"></i> Process Overview</h4>
+                 <ol data-translate="p4_detail_process" class="list-based">
                 </ol>
            </div>
        </div>
        <div class="repo-links-container">
             <a href="https://github.com/jagyanjit/DevopsProject1" target="_blank" class="repo-link">
                 <i class="fab fa-github"></i>
-                <span>Explore the codes</span>
+                <span data-translate="explore_code">Explore the codes</span>
             </a>
             <a href="https://docs.google.com/document/d/1BrmY6poKK3PfhS8PtQmzWv3cpQSjZQxX/edit?usp=sharing&ouid=102413956562003041794&rtpof=true&sd=true" target="_blank" class="repo-link">
                 <i class="fas fa-file-alt"></i>
-                <span>Documentation</span>
+                <span data-translate="documentation">Documentation</span>
             </a>
        </div>
    </div>
@@ -1549,25 +1559,19 @@
        </svg>
    </div>
     <div class="container">
-       <h2 class="section-title">ML-Powered Predictions</h2>
+       <h2 class="section-title" data-translate="p5_title">ML-Powered Predictions</h2>
        <div class="project-detail-layout">
            <a href="https://github.com/jagyanjit/Machine-Learning-and-Deep-Learning/blob/main/Project_crop.ipynb" target="_blank" class="ml-card-link">
                 <div class="ml-card">
-                    <h4><i class="fas fa-leaf"></i> Crop Recommendation</h4>
-                    <ol>
-                        <li>Developed a model to recommend optimal crops based on soil and environmental data.</li>
-                        <li>Compared Gaussian Naive Bayes, Decision Tree, and Random Forest to find the best performer.</li>
-                        <li>Achieved ~99.5% testing accuracy with the top-performing Random Forest Classifier.</li>
+                    <h4 data-translate="p5_sub1_title"><i class="fas fa-leaf"></i> Crop Recommendation</h4>
+                    <ol data-translate="p5_sub1_desc" class="list-based">
                     </ol>
                 </div>
            </a>
            <a href="https://github.com/jagyanjit/Machine-Learning-and-Deep-Learning/blob/main/Project_covid.ipynb" target="_blank" class="ml-card-link">
                 <div class="ml-card">
-                    <h4><i class="fas fa-virus-covid"></i> Covid-19 Prediction</h4>
-                    <ol>
-                        <li>Built a model to predict COVID-19 test results using symptom and demographic data.</li>
-                        <li>Trained a Logistic Regression model after preprocessing and encoding categorical data.</li>
-                        <li>Validated model performance with a confusion matrix and a classification report.</li>
+                    <h4 data-translate="p5_sub2_title"><i class="fas fa-virus-covid"></i> Covid-19 Prediction</h4>
+                    <ol data-translate="p5_sub2_desc" class="list-based">
                     </ol>
                 </div>
             </a>
@@ -1589,64 +1593,73 @@
     document.addEventListener('DOMContentLoaded', () => {
 
         const themeBtn = document.getElementById('themeToggle');
-        const appearanceBtn = document.getElementById('appearance-btn');
-        const appearanceDropdown = document.querySelector('.appearance-dropdown');
+        const settingsBtn = document.getElementById('settings-btn');
+        const settingsMenu = document.querySelector('.settings-menu');
+        const settingsDropdown = document.querySelector('.settings-dropdown');
         const body = document.body;
         const skillsChartCanvas = document.getElementById('skillsChart');
         let skillsChart;
         let vimeoPlayer = null;
         let cameFromSkills = false;
+        let currentBaseColor = 'violet'; 
 
-        const setAppearance = (fullThemeName) => {
-            const isLight = fullThemeName.startsWith('light');
-            const themeMode = isLight ? 'light' : 'dark';
-            
-            // Update storage
-            localStorage.setItem('theme', themeMode);
-            if (isLight) {
-                localStorage.setItem('last-light-theme', fullThemeName);
-            } else {
-                localStorage.setItem('last-dark-theme', fullThemeName);
-            }
-            
-            // Clear old theme classes from body
+        const colorMappings = {
+            violet: { dark: 'dark', light: 'light-purple' },
+            green:  { dark: 'dark-green', light: 'light-green' },
+            red:    { dark: 'dark-red', light: 'light-red' },
+            pink:   { dark: 'dark-pink', light: 'light-pink' },
+            orange: { dark: 'dark-orange', light: 'light-orange' },
+            blue:   { dark: 'dark-blue', light: 'light' },
+            indigo: { dark: 'dark-indigo', light: 'light-indigo' },
+            slate:  { dark: 'dark-slate', light: 'light-slate' },
+            amber:  { dark: 'dark-amber', light: 'light-amber' },
+            teal:   { dark: 'dark-teal', light: 'light-teal' },
+            rose:   { dark: 'dark-rose', light: 'light-rose' },
+            gray:   { dark: 'dark-gray', light: 'light-gray' }
+        };
+
+        function applyTheme() {
+            const isLight = body.classList.contains('light');
+            const themeClass = isLight ? colorMappings[currentBaseColor].light : colorMappings[currentBaseColor].dark;
+
+            // Clear old theme classes
             const classesToRemove = [...body.classList].filter(c => c.startsWith('light-') || c.startsWith('dark-'));
-            body.classList.remove(...classesToRemove, 'light');
-            
-            // Add new classes
-            if (isLight) {
-                body.classList.add('light');
-            }
-            if (fullThemeName !== 'light' && fullThemeName !== 'dark') {
-                body.classList.add(fullThemeName);
+            body.classList.remove(...classesToRemove);
+
+            // Add new class if it's not the default light/dark
+            if (themeClass !== 'light' && themeClass !== 'dark') {
+                body.classList.add(themeClass);
             }
 
-            // Update selected indicator
-            const allThemeButtons = document.querySelectorAll('.appearance-dropdown button[data-theme]');
-            allThemeButtons.forEach(btn => btn.classList.remove('selected'));
-            const selectedButton = document.querySelector(`.appearance-dropdown button[data-theme="${fullThemeName}"]`);
-            if (selectedButton) {
-                selectedButton.classList.add('selected');
-            }
+            // Update selected button
+            document.querySelectorAll('button[data-color]').forEach(btn => {
+                btn.classList.toggle('selected', btn.dataset.color === currentBaseColor);
+            });
 
-
-            if (appearanceDropdown.classList.contains('show')) {
-                appearanceDropdown.classList.remove('show');
-            }
-
-            // Redraw chart if it has been rendered
+            // Redraw chart
             if (skillsChart) {
                 const skillsSection = document.getElementById('skills');
                 if (skillsSection.classList.contains('fade-in')) {
                    createChart();
                 }
             }
-        };
+        }
+
+        function setColor(baseColor) {
+            currentBaseColor = baseColor;
+            localStorage.setItem('color', baseColor);
+            applyTheme();
+        }
 
         const generateCustomLegend = (chart) => {
             const legendContainer = document.getElementById('custom-legend');
             if (!legendContainer) return;
-            const legendItems = chart.data.labels.map((label, index) => {
+            const labels = chart.data.labels;
+            const translatedLabels = labels.map(label => {
+                const key = `skills_chart_${label.toLowerCase().replace(/ & /g, '_').replace(/ /g, '_')}`;
+                return translations[currentLang][key] || label;
+            });
+            const legendItems = translatedLabels.map((label, index) => {
                 const backgroundColor = chart.data.datasets[0].backgroundColor[index];
                 return `<div class="legend-item"><span class="legend-color-box" style="background-color: ${backgroundColor}"></span><span>${label}</span></div>`;
             }).join('');
@@ -1704,44 +1717,226 @@
             generateCustomLegend(skillsChart);
         };
         
-        // --- INITIAL THEME AND APPEARANCE LOGIC ---
-        const savedMode = localStorage.getItem('theme') || 'dark';
-        const initialThemeName = savedMode === 'light' 
-            ? (localStorage.getItem('last-light-theme') || 'light')
-            : (localStorage.getItem('last-dark-theme') || 'dark');
-        setAppearance(initialThemeName);
+        // --- TRANSLATION LOGIC ---
+        const translations = {
+            'en': {
+                'home_link': 'Jagyanjit Rout',
+                'nav_skills': 'Skills',
+                'nav_works': 'My Works',
+                'nav_education': 'Education',
+                'nav_contact': 'Contact',
+                'settings_appearance': 'Appearance',
+                'settings_language': 'Language',
+                'hero_title': 'Aspiring Cloud & Web Developer',
+                'hero_desc': 'I’m Jagyanjit, an aspiring Cloud & Web Developer. I enjoy building in the cloud, creating web projects, and experimenting with technologies that solve real problems. I thrive on turning ideas into practical, meaningful solutions.',
+                'skills_title': 'My Toolbox & Skills',
+                'skills_cat_prog': 'Programming',
+                'skills_cat_cloud': 'DevOps & Cloud',
+                'skills_cat_ml': 'Machine Learning & DL',
+                'skills_chart_programming': 'Programming',
+                'skills_chart_devops_cloud': 'DevOps & Cloud',
+                'skills_chart_machine_learning_dl': 'Machine Learning & DL',
+                'explore_title': 'Explore My Work',
+                'explore_projects_title': 'View Projects',
+                'explore_projects_desc': 'See a detailed list of my technical projects and contributions.',
+                'explore_achievements_title': 'View Achievements',
+                'explore_achievements_desc': 'Browse my certifications and professional accomplishments.',
+                'education_title': 'Education',
+                'edu_uni_name': 'Silicon University, Bhubaneswar',
+                'edu_uni_degree': 'B.Tech in Electronics and Communication Engineering',
+                'edu_hs_name': 'Nayagarh Higher Secondary School, Nayagarh',
+                'edu_hs_degree': 'Intermediate (CHSE)',
+                'edu_school_name': 'D.A.V. Public School, Puri',
+                'edu_school_degree': 'Matriculation',
+                'footer_copyright': '© 2025 Jagyanjit Rout. All rights reserved.',
+                'projects_title': 'Projects',
+                'achievements_title': 'Achievements & Certifications',
+                'p1_title': 'Morse Code Converter (Morse-Talk)',
+                'p1_desc': 'Morse-Talk assists non-verbal paralyzed individuals. It converts Morse code to text and then text-to-speech and GSM emergency calls.',
+                'p2_title': 'Mobile Application Development',
+                'p2_desc': 'Built a responsive mobile app using JS, HTML, CSS & React Native, featuring a product catalog UI and basic cart functionality.',
+                'p3_title': 'End-to-End CI/CD Pipeline',
+                'p3_desc': 'Implemented an automated CI/CD pipeline for cloud deployments using AWS CodePipeline and managed scalable infrastructure with Terraform.',
+                'p4_title': 'DevSecOps Implementation',
+                'p4_desc': 'Enhanced deployment security by integrating security scans with tfsec and Trivy, and managed Kubernetes secrets using Sealed Secrets.',
+                'p5_title': 'ML-Powered Predictions',
+                'p5_desc': 'Developed crop recommendation and COVID-19 prediction models using Random Forest and Logistic Regression.',
+                'cert1_title': 'DevOps Masters',
+                'cert1_issuer': 'by ingenious-TechWorld',
+                'cert2_title': 'Machine Learning & Deep Learning',
+                'cert2_issuer': 'by Silicon University',
+                'cert3_title': 'Mobile App Development using React Native',
+                'cert3_issuer': 'by Syllogistek Systems Pvt Ltd',
+                'cert4_title': 'Introduction To Industry 4.0 And Industrial Internet Of Things',
+                'cert4_issuer': 'by NPTEL',
+                'cert5_title': 'Understanding Incubation and Entrepreneurship',
+                'cert5_issuer': 'by NPTEL',
+                'cert6_title': 'MATLAB Onramp',
+                'cert6_issuer': 'by MathWorks',
+                'cert7_title': 'MATLAB Fundamentals',
+                'cert7_issuer': 'by MathWorks',
+                'detail_construction': 'Construction',
+                'detail_working': 'Working Principle',
+                'p1_detail_construction': '<b>Input:</b> IR sensor detects Morse signals (short = dot, long = dash).<br><b>Processing:</b> ESP32 firmware (morse_to_text.ino) times signals, converts them into Morse strings, and maps them to characters.<br><b>Display:</b> Characters appear on an LCD screen for immediate feedback.<br><b>Communication:</b> Text is sent via Bluetooth to a Python program.<br><b>Output:</b> Python converts text to speech; GSM module can place emergency calls.',
+                'p1_detail_working': '<b>1.</b> User taps signals → IR sensor captures ON/OFF durations.<br><b>2.</b> Firmware distinguishes dots, dashes, and gaps.<br><b>3.</b> Morse sequence is matched to a letter using a lookup table.<br><b>4.</b> Letter is shown on the LCD and transmitted to Python.<br><b>5.</b> Python speaks the message; GSM module dials if emergency code is triggered.',
+                'detail_tech_stack': 'What it uses',
+                'detail_how_works': 'How it works',
+                'p2_detail_tech': '<b>JavaScript + React Native:</b> A cross-platform mobile framework.<br><b>React components & JSX:</b> Used for building the user interface.<br><b>Babel + Node/npm:</b> For transpiling and dependency management.<br><b>React Context API:</b> Manages and shares state across the app.',
+                'p2_detail_how': '<b>App.js:</b> The main entry point that loads the application.<br><b>AppNavigator.js:</b> Handles all navigation between different screens.<br><b>Screens + Components:</b> Render the UI elements and contain the logic.<br><b>Context:</b> Provides a global state for data accessible across all screens.',
+                'detail_process': 'Process Overview',
+                'p3_detail_process': '<li>Used Terraform to provision an AWS CodePipeline.</li><li>Configured the pipeline with:<ul><li>Source stage connected to GitHub or CodeCommit.</li><li>Build stage using AWS CodeBuild.</li><li>Deploy stage using AWS CodeDeploy or EC2.</li></ul></li><li>Defined all required infrastructure using Terraform, including:<ul><li>CodePipeline, CodeBuild, and CodeDeploy resources.</li><li>IAM roles and policies.</li><li>S3 buckets for artifact storage.</li></ul></li><li>Used Terratest to write infrastructure tests and validate the Terraform modules.</li><li>Applied Terraform to create the pipeline and confirmed successful setup.</li>',
+                'p4_detail_process': '<li>Used GitHub Actions to automate the CI/CD workflow.</li><li>Integrated security scanning into the workflow using:<ul><li>tfsec for Terraform code.</li><li>Trivy for Docker image scanning.</li></ul></li><li>Implemented Sealed Secrets to manage Kubernetes secrets securely before deploying workloads.<ul><li>Stored secrets in encrypted SealedSecrets format.</li><li>Applied SealedSecrets to the Kubernetes cluster as part of the deployment pipeline.</li></ul></li><li>Ensured the GitHub Actions workflow:<ul><li>Executed on each code push.</li><li>Ran security scans.</li><li>Applied SealedSecrets.</li><li>Triggered deployment to Kubernetes or updated infrastructure via Terraform.</li></ul></li>',
+                'p5_sub1_title': 'Crop Recommendation',
+                'p5_sub1_desc': '<li>Developed a model to recommend optimal crops based on soil and environmental data.</li><li>Compared Gaussian Naive Bayes, Decision Tree, and Random Forest to find the best performer.</li><li>Achieved ~99.5% testing accuracy with the top-performing Random Forest Classifier.</li>',
+                'p5_sub2_title': 'Covid-19 Prediction',
+                'p5_sub2_desc': '<li>Built a model to predict COVID-19 test results using symptom and demographic data.</li><li>Trained a Logistic Regression model after preprocessing and encoding categorical data.</li><li>Validated model performance with a confusion matrix and a classification report.</li>',
+                'explore_code': 'Explore the codes',
+                'documentation': 'Documentation',
+            },
+            'es': { // Spanish
+                'home_link': 'Jagyanjit Rout',
+                'nav_skills': 'Habilidades',
+                'nav_works': 'Mis Trabajos',
+                'nav_education': 'Educación',
+                'nav_contact': 'Contacto',
+                'settings_appearance': 'Apariencia',
+                'settings_language': 'Idioma',
+                'hero_title': 'Aspirante a Desarrollador Web y en la Nube',
+                'hero_desc': 'Soy Jagyanjit, un aspirante a desarrollador web y en la nube. Disfruto construyendo en la nube, creando proyectos web y experimentando con tecnologías que resuelven problemas reales. Me encanta convertir ideas en soluciones prácticas y significativas.',
+                'skills_title': 'Mi Caja de Herramientas y Habilidades',
+                'skills_cat_prog': 'Programación',
+                'skills_cat_cloud': 'DevOps y Nube',
+                'skills_cat_ml': 'Aprendizaje Automático y Profundo',
+                'skills_chart_programming': 'Programación',
+                'skills_chart_devops_cloud': 'DevOps y Nube',
+                'skills_chart_machine_learning_dl': 'AA y AP',
+                'explore_title': 'Explora mi Trabajo',
+                'explore_projects_title': 'Ver Proyectos',
+                'explore_projects_desc': 'Consulta una lista detallada de mis proyectos técnicos y contribuciones.',
+                'explore_achievements_title': 'Ver Logros',
+                'explore_achievements_desc': 'Explora mis certificaciones y logros profesionales.',
+                'education_title': 'Educación',
+                'edu_uni_name': 'Universidad de Silicio, Bhubaneswar',
+                'edu_uni_degree': 'B.Tech en Ingeniería Electrónica y de Comunicaciones',
+                'edu_hs_name': 'Escuela Secundaria Superior de Nayagarh, Nayagarh',
+                'edu_hs_degree': 'Intermedio (CHSE)',
+                'edu_school_name': 'Escuela Pública D.A.V., Puri',
+                'edu_school_degree': 'Matriculación',
+                'footer_copyright': '© 2025 Jagyanjit Rout. Todos los derechos reservados.',
+                'projects_title': 'Proyectos',
+                'achievements_title': 'Logros y Certificaciones',
+                'p1_title': 'Convertidor de Código Morse (Morse-Talk)',
+                'p1_desc': 'Morse-Talk ayuda a personas paralizadas no verbales. Convierte el código Morse en texto y luego en voz y llamadas de emergencia GSM.',
+                'p2_title': 'Desarrollo de Aplicaciones Móviles',
+                'p2_desc': 'Creé una aplicación móvil responsiva usando JS, HTML, CSS y React Native, con una interfaz de catálogo de productos y funcionalidad básica de carrito.',
+                'p3_title': 'Pipeline de CI/CD de Extremo a Extremo',
+                'p3_desc': 'Implementé un pipeline de CI/CD automatizado para implementaciones en la nube usando AWS CodePipeline y gestioné infraestructura escalable con Terraform.',
+                'p4_title': 'Implementación de DevSecOps',
+                'p4_desc': 'Mejoré la seguridad de la implementación integrando escaneos de seguridad con tfsec y Trivy, y gestioné secretos de Kubernetes usando Sealed Secrets.',
+                'p5_title': 'Predicciones con IA',
+                'p5_desc': 'Desarrollé modelos de recomendación de cultivos y predicción de COVID-19 usando Random Forest y Regresión Logística.',
+                'cert1_title': 'Maestría en DevOps',
+                'cert1_issuer': 'por ingenious-TechWorld',
+                'cert2_title': 'Aprendizaje Automático y Profundo',
+                'cert2_issuer': 'por la Universidad de Silicio',
+                'cert3_title': 'Desarrollo de Apps Móviles con React Native',
+                'cert3_issuer': 'por Syllogistek Systems Pvt Ltd',
+                'cert4_title': 'Introducción a la Industria 4.0 e IoT Industrial',
+                'cert4_issuer': 'por NPTEL',
+                'cert5_title': 'Entendiendo la Incubación y el Emprendimiento',
+                'cert5_issuer': 'por NPTEL',
+                'cert6_title': 'Introducción a MATLAB',
+                'cert6_issuer': 'por MathWorks',
+                'cert7_title': 'Fundamentos de MATLAB',
+                'cert7_issuer': 'por MathWorks',
+                'detail_construction': 'Construcción',
+                'detail_working': 'Principio de Funcionamiento',
+                'p1_detail_construction': '<b>Entrada:</b> El sensor IR detecta señales Morse (corto = punto, largo = raya).<br><b>Procesamiento:</b> El firmware del ESP32 mide las señales, las convierte en cadenas Morse y las asigna a caracteres.<br><b>Pantalla:</b> Los caracteres aparecen en una pantalla LCD.<br><b>Comunicación:</b> El texto se envía por Bluetooth a un programa en Python.<br><b>Salida:</b> Python convierte el texto a voz; el módulo GSM puede realizar llamadas de emergencia.',
+                'p1_detail_working': '<b>1.</b> El usuario pulsa señales → el sensor IR captura las duraciones.<br><b>2.</b> El firmware distingue puntos, rayas y espacios.<br><b>3.</b> La secuencia Morse se compara con una letra.<br><b>4.</b> La letra se muestra en el LCD y se transmite.<br><b>5.</b> Python pronuncia el mensaje; el módulo GSM llama si se activa el código de emergencia.',
+                'detail_tech_stack': 'Tecnologías Utilizadas',
+                'detail_how_works': 'Cómo Funciona',
+                'p2_detail_tech': '<b>JavaScript + React Native:</b> Un framework móvil multiplataforma.<br><b>Componentes de React y JSX:</b> Para construir la interfaz de usuario.<br><b>Babel + Node/npm:</b> Para transpilación y gestión de dependencias.<br><b>API de Contexto de React:</b> Gestiona y comparte el estado en toda la aplicación.',
+                'p2_detail_how': '<b>App.js:</b> El punto de entrada principal.<br><b>AppNavigator.js:</b> Maneja la navegación.<br><b>Pantallas + Componentes:</b> Renderizan los elementos de la interfaz.<br><b>Contexto:</b> Proporciona un estado global para los datos.',
+                'detail_process': 'Resumen del Proceso',
+                'p3_detail_process': '<li>Usé Terraform para aprovisionar un AWS CodePipeline.</li><li>Configuré el pipeline con:<ul><li>Etapa de origen conectada a GitHub.</li><li>Etapa de compilación con AWS CodeBuild.</li><li>Etapa de despliegue con AWS CodeDeploy.</li></ul></li><li>Definí la infraestructura con Terraform.</li><li>Usé Terratest para pruebas de infraestructura.</li><li>Apliqué Terraform para crear el pipeline.</li>',
+                'p4_detail_process': '<li>Usé GitHub Actions para automatizar el flujo de trabajo.</li><li>Integré escaneo de seguridad con:<ul><li>tfsec para Terraform.</li><li>Trivy para imágenes de Docker.</li></ul></li><li>Implementé Sealed Secrets para gestionar secretos de Kubernetes.</li><li>Aseguré que el flujo de trabajo se ejecutara en cada push, corriera escaneos y desplegara.</li>',
+                'p5_sub1_title': 'Recomendación de Cultivos',
+                'p5_sub1_desc': '<li>Desarrollé un modelo para recomendar cultivos óptimos.</li><li>Comparé Naive Bayes, Árbol de Decisión y Random Forest.</li><li>Logré una precisión de ~99.5% con Random Forest.</li>',
+                'p5_sub2_title': 'Predicción de Covid-19',
+                'p5_sub2_desc': '<li>Construí un modelo para predecir resultados de pruebas de COVID-19.</li><li>Entrené un modelo de Regresión Logística.</li><li>Validé el rendimiento con una matriz de confusión.</li>',
+                'explore_code': 'Explorar los códigos',
+                'documentation': 'Documentación',
+            },
+            // Add other languages here in the same format
+        };
+        let currentLang = 'en';
+
+        const setLanguage = (lang) => {
+            if (!translations[lang]) return;
+            currentLang = lang;
+            localStorage.setItem('language', lang);
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.dataset.translate;
+                if(translations[lang][key]) {
+                    if (el.classList.contains('list-based')) {
+                        el.innerHTML = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+             // Update selected indicator for language
+            const allLangButtons = document.querySelectorAll('.language-submenu button[data-lang]');
+            allLangButtons.forEach(btn => btn.classList.remove('selected'));
+            const selectedLangButton = document.querySelector(`.language-submenu button[data-lang="${lang}"]`);
+            if (selectedLangButton) {
+                selectedLangButton.classList.add('selected');
+            }
+            if (skillsChart) {
+                generateCustomLegend(skillsChart);
+            }
+        }
+
+
+        // --- INITIAL SETUP ---
+        const savedColor = localStorage.getItem('color') || 'violet';
+        const savedMode = localStorage.getItem('mode') || 'dark';
+        if (savedMode === 'light') {
+            body.classList.add('light');
+        }
+        setColor(savedColor);
+
+        const savedLang = localStorage.getItem('language') || 'en';
+        setLanguage(savedLang);
 
         // --- EVENT LISTENERS ---
 
-        // Main Theme Toggle (sun/moon icon)
         themeBtn.addEventListener('click', () => {
-            const isCurrentlyLight = body.classList.contains('light');
-            const targetTheme = isCurrentlyLight
-                ? (localStorage.getItem('last-dark-theme') || 'dark')
-                : (localStorage.getItem('last-light-theme') || 'light');
-            setAppearance(targetTheme);
+            body.classList.toggle('light');
+            localStorage.setItem('mode', body.classList.contains('light') ? 'light' : 'dark');
+            applyTheme();
         });
 
-        // Appearance Dropdown Toggle
-        appearanceBtn.addEventListener('click', (e) => {
-            e.preventDefault();
+        settingsBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            appearanceDropdown.classList.toggle('show');
+            settingsDropdown.classList.toggle('show');
         });
 
-        // Appearance Option Selection
-        appearanceDropdown.addEventListener('click', e => {
-            const button = e.target.closest('button[data-theme]');
-            if (button) {
-                setAppearance(button.dataset.theme);
+        settingsDropdown.addEventListener('click', e => {
+            const colorButton = e.target.closest('button[data-color]');
+            if (colorButton) {
+                setColor(colorButton.dataset.color);
+            }
+            const langButton = e.target.closest('button[data-lang]');
+            if (langButton) {
+                setLanguage(langButton.dataset.lang);
             }
         });
 
-
-        // Close dropdown on outside click
         window.addEventListener('click', (e) => {
-            if (appearanceDropdown.classList.contains('show') && !appearanceDropdown.contains(e.target) && e.target !== appearanceBtn) {
-                appearanceDropdown.classList.remove('show');
+            if (settingsDropdown.classList.contains('show') && !settingsMenu.contains(e.target)) {
+                settingsDropdown.classList.remove('show');
             }
         });
 
@@ -1964,4 +2159,3 @@
 
 </body>
 </html>
-
