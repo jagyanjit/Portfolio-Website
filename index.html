@@ -1404,20 +1404,10 @@
             </div>
             <div class="project-description">
                 <h4 data-translate="detail_construction"><i class="fas fa-cogs"></i> Construction</h4>
-                <p data-translate="p1_detail_construction">
-                    <b>Input:</b> IR sensor detects Morse signals (short = dot, long = dash).<br>
-                    <b>Processing:</b> ESP32 firmware (morse_to_text.ino) times signals, converts them into Morse strings, and maps them to characters.<br>
-                    <b>Display:</b> Characters appear on an LCD screen for immediate feedback.<br>
-                    <b>Communication:</b> Text is sent via Bluetooth to a Python program.<br>
-                    <b>Output:</b> Python converts text to speech; GSM module can place emergency calls.
+                <p data-translate="p1_detail_construction" class="html-content">
                 </p>
                 <h4 data-translate="detail_working"><i class="fas fa-lightbulb"></i> Working Principle</h4>
-                <p data-translate="p1_detail_working">
-                    <b>1.</b> User taps signals → IR sensor captures ON/OFF durations.<br>
-                    <b>2.</b> Firmware distinguishes dots, dashes, and gaps.<br>
-                    <b>3.</b> Morse sequence is matched to a letter using a lookup table.<br>
-                    <b>4.</b> Letter is shown on the LCD and transmitted to Python.<br>
-                    <b>5.</b> Python speaks the message; GSM module dials if emergency code is triggered.
+                <p data-translate="p1_detail_working" class="html-content">
                 </p>
             </div>
         </div>
@@ -1452,18 +1442,10 @@
             </div>
             <div class="project-description">
                 <h4 data-translate="detail_tech_stack"><i class="fas fa-cogs"></i> What it uses</h4>
-                <p data-translate="p2_detail_tech">
-                    <b>JavaScript + React Native:</b> A cross-platform mobile framework.<br>
-                    <b>React components & JSX:</b> Used for building the user interface.<br>
-                    <b>Babel + Node/npm:</b> For transpiling and dependency management.<br>
-                    <b>React Context API:</b> Manages and shares state across the app.
+                <p data-translate="p2_detail_tech" class="html-content">
                 </p>
                 <h4 data-translate="detail_how_works"><i class="fas fa-lightbulb"></i> How it works</h4>
-                <p data-translate="p2_detail_how">
-                    <b>App.js:</b> The main entry point that loads the application.<br>
-                    <b>AppNavigator.js:</b> Handles all navigation between different screens.<br>
-                    <b>Screens + Components:</b> Render the UI elements and contain the logic.<br>
-                    <b>Context:</b> Provides a global state for data accessible across all screens.
+                <p data-translate="p2_detail_how" class="html-content">
                 </p>
             </div>
         </div>
@@ -1496,7 +1478,7 @@
            </div>
            <div class="project-description">
                 <h4 data-translate="detail_process"><i class="fas fa-cogs"></i> Process Overview</h4>
-                <ol data-translate="p3_detail_process" class="list-based">
+                <ol data-translate="p3_detail_process" class="html-content">
                 </ol>
            </div>
        </div>
@@ -1533,7 +1515,7 @@
            </div>
            <div class="project-description">
                 <h4 data-translate="detail_process"><i class="fas fa-cogs"></i> Process Overview</h4>
-                 <ol data-translate="p4_detail_process" class="list-based">
+                 <ol data-translate="p4_detail_process" class="html-content">
                 </ol>
            </div>
        </div>
@@ -1564,14 +1546,14 @@
            <a href="https://github.com/jagyanjit/Machine-Learning-and-Deep-Learning/blob/main/Project_crop.ipynb" target="_blank" class="ml-card-link">
                 <div class="ml-card">
                     <h4 data-translate="p5_sub1_title"><i class="fas fa-leaf"></i> Crop Recommendation</h4>
-                    <ol data-translate="p5_sub1_desc" class="list-based">
+                    <ol data-translate="p5_sub1_desc" class="html-content">
                     </ol>
                 </div>
            </a>
            <a href="https://github.com/jagyanjit/Machine-Learning-and-Deep-Learning/blob/main/Project_covid.ipynb" target="_blank" class="ml-card-link">
                 <div class="ml-card">
                     <h4 data-translate="p5_sub2_title"><i class="fas fa-virus-covid"></i> Covid-19 Prediction</h4>
-                    <ol data-translate="p5_sub2_desc" class="list-based">
+                    <ol data-translate="p5_sub2_desc" class="html-content">
                     </ol>
                 </div>
             </a>
@@ -1878,7 +1860,7 @@
             document.querySelectorAll('[data-translate]').forEach(el => {
                 const key = el.dataset.translate;
                 if(translations[lang][key]) {
-                    if (el.classList.contains('list-based')) {
+                    if (el.classList.contains('html-content')) {
                         el.innerHTML = translations[lang][key];
                     } else {
                         el.textContent = translations[lang][key];
