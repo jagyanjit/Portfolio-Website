@@ -17,13 +17,13 @@
     <style>
         /* --- 🎨 CUSTOM PROPERTIES & GLOBAL STYLES --- */
         :root {
-            --bg: hsl(260, 40%, 10%);
-            --surface: hsl(260, 40%, 15%);
+            --bg: hsl(260, 40%, 8%);
+            --surface: hsl(260, 40%, 12%);
             --text: #e6eef6;
             --muted: #8491a0;
             --accent: #8b5cf6;
             --accent-glow: rgba(139, 92, 246, 0.2);
-            --border-color: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.08);
             --radius: 16px;
             --transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             --font-body: 'Inter', sans-serif;
@@ -31,13 +31,13 @@
         }
 
         body.light {
-            --bg: #e5e7eb; /* Changed to a light grey */
+            --bg: #f0f8ff; /* Light Sky Blue */
             --surface: #ffffff;
             --text: #111827;
             --muted: #6b7280;
             --accent: #3b82f6; /* Light Blue */
             --accent-glow: rgba(59, 130, 246, 0.15);
-            --border-color: rgba(0, 0, 0, 0.08);
+            --border-color: rgba(0, 0, 0, 0.15); /* Black Grid */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -55,7 +55,28 @@
             line-height: 1.6;
             transition: background 0.3s, color 0.3s;
             overflow-x: hidden;
-            cursor: none; /* Hide default cursor */
+        }
+        
+        /* ✨ Background Grid Effect */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image:
+                linear-gradient(to right, var(--border-color) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--border-color) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: -2;
+            opacity: 0.5;
+            animation: bg-pan 15s linear infinite;
+        }
+
+        @keyframes bg-pan {
+            from { background-position: 0 0; }
+            to { background-position: 60px 60px; }
         }
 
         /* ✨ Aurora & Spotlight Background Effect */
@@ -85,6 +106,7 @@
             transition: opacity 0.3s, transform 0.3s;
         }
         .cursor-dot {
+            display: none; /* Hide the custom dot */
             width: var(--cursor-size);
             height: var(--cursor-size);
             background-color: var(--accent);
@@ -93,20 +115,20 @@
         .cursor-outline {
             width: var(--cursor-outline-size);
             height: var(--cursor-outline-size);
-            border: 2px solid var(--accent);
-            background-color: rgba(139, 92, 246, 0.1);
+            border: none; /* Changed from '2px solid var(--accent)' */
+            background-color: transparent; /* Changed from rgba(139, 92, 246, 0.1) */
         }
         body.light .cursor-outline {
-             background-color: rgba(59, 130, 246, 0.1);
+             background-color: transparent; /* Changed from rgba(59, 130, 246, 0.1) */
         }
 
         body:has(a:hover, button:hover, .explore-card-link:hover, .cert-card:hover, .carousel-item:hover, .ml-card-link:hover, .card-link:hover, .skill-tag:hover) .cursor-outline {
             width: calc(var(--cursor-outline-size) * 1.5);
             height: calc(var(--cursor-outline-size) * 1.5);
-            background-color: rgba(139, 92, 246, 0.2);
+            background-color: transparent; /* Remove circle on hover */
         }
         body.light:has(a:hover, button:hover, .explore-card-link:hover, .cert-card:hover, .carousel-item:hover, .ml-card-link:hover, .card-link:hover, .skill-tag:hover) .cursor-outline {
-             background-color: rgba(59, 130, 246, 0.2);
+             background-color: transparent; /* Remove circle on hover */
         }
 
         img { max-width: 100%; display: block; }
@@ -118,7 +140,7 @@
         }
 
         section {
-            padding: 140px 0;
+            padding: 120px 0; /* Reduced padding from 140px */
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -516,7 +538,7 @@
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background-color: var(--bg);
+            /* background-color: var(--bg); <-- This is removed to allow the grid to show */
             overflow-y: auto;
             z-index: 1100;
             padding: 140px 0;
@@ -868,6 +890,7 @@
              .skills-content-wrapper {
                 display: flex;
                 flex-direction: column;
+                align-items: center; /* Added to center items when stacked */
                 gap: 60px;
                 min-height: 0;
             }
@@ -908,9 +931,24 @@
             body { cursor: auto; } /* Disable custom cursor on mobile */
             .cursor-dot, .cursor-outline { display: none; }
             header { flex-direction: column; gap: 16px; padding: 16px 5%; }
+            nav {
+                gap: 20px; /* Reduced gap for smaller screens */
+            }
+            nav a {
+                font-size: 15px; /* Slightly smaller nav text for mobile */
+            }
             section, .full-page { padding: 100px 0; }
+            .explore-card {
+                padding: 30px; /* Reduced padding for more space */
+            }
+            .card-content {
+                padding: 20px; /* Reduced padding for more space */
+            }
             .skills-chart-container { max-width: 90%; }
-            .back-button { left: 5%; }
+            .back-button { 
+                left: 5%; 
+                right: auto; /* Overwrite the default right positioning */
+            }
         }
     </style>
 </head>
@@ -1059,10 +1097,10 @@
         <div class="container">
             <div class="social-links">
                 <a href="mailto:jagyanjit@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="tel:8917417197" aria-label="Phone"><i class="fas fa-phone"></i></a>
                 <a href="https://www.linkedin.com/in/jagyanjit/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/jagyanjit" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                <a href="https://www.behance.net/jagyanjitrout" target="_blank" aria-label="Behance"><i class="fab fa-behance"></i></a>
-                <a href="https://leetcode.com/u/jjB9vY4cFR/" target="_blank" aria-label="LeetCode"><i class="fas fa-code"></i></a>
+                <a href="https://x.com/jagyanjit" target="_blank" aria-label="X"><i class="fab fa-x-twitter"></i></a>
             </div>
             <p>© 2025 Jagyanjit Rout. All rights reserved.</p>
         </div>
@@ -1521,6 +1559,7 @@
             body.style.setProperty('--x', `${clientX}px`);
             body.style.setProperty('--y', `${clientY}px`);
             
+            // The following two lines for cursorDot can be removed, but are kept for structure
             cursorDot.style.left = `${clientX}px`;
             cursorDot.style.top = `${clientY}px`;
 
@@ -1536,6 +1575,7 @@
 
         const showPage = (pageToShow) => {
             mainContent.style.display = 'none';
+            document.getElementById('header').style.display = 'none'; // Hide header
             allPages.forEach(p => p.style.display = 'none');
             pageToShow.style.display = 'flex';
             window.scrollTo(0, 0);
@@ -1553,6 +1593,7 @@
         const showHome = (scrollToSection = false, isFromSkills = false) => {
             allPages.forEach(page => page.style.display = 'none');
             mainContent.style.display = 'block';
+            document.getElementById('header').style.display = 'flex'; // Show header
 
             if (isFromSkills) {
                 document.getElementById('skills').scrollIntoView({ behavior: 'smooth' });
@@ -1735,4 +1776,3 @@
 
 </body>
 </html>
-
