@@ -1670,7 +1670,7 @@
                         label: 'Skills',
                         data: [7, 7, 5],
                         backgroundColor: ['#a78bfa', '#f472b6', '#f5f5f5'],
-                        borderColor: [getComputedStyle(body).getPropertyValue('--surface')],
+                        borderColor: getComputedStyle(body).getPropertyValue(body.classList.contains('light') ? '--border-color' : '--surface'),
                         borderWidth: 4,
                         hoverOffset: 20
                     }]
@@ -1964,3 +1964,4 @@
 
 </body>
 </html>
+
